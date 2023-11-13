@@ -4,6 +4,7 @@ use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Dependencias
         Route::resource('dependencias', DependenciaController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Oficinas
+        Route::resource('oficinas', OficinaController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

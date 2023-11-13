@@ -60,6 +60,11 @@ class UserController extends Controller
             'dependencias.edit',
             'dependencias.destroy',
 
+            'oficinas.index',
+            'oficinas.create',
+            'oficinas.edit',
+            'oficinas.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 

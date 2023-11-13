@@ -51,6 +51,14 @@ export default new Router({
                 .default,
         },
 
+        // Oficinas
+        {
+            path: "/oficinas",
+            name: "oficinas.index",
+            component: require("./components/modulos/oficinas/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

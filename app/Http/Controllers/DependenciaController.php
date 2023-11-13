@@ -38,9 +38,9 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' REGISTRO UN DEPENDENCIA',
+                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' REGISTRO UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
-                'modulo' => 'USUARIOS',
+                'modulo' => 'DEPENDENCIAS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -71,10 +71,10 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' MODIFICÓ UN DEPENDENCIA',
+                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' MODIFICÓ UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'USUARIOS',
+                'modulo' => 'DEPENDENCIAS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -110,9 +110,9 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' ELIMINÓ UN DEPENDENCIA',
+                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' ELIMINÓ UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
-                'modulo' => 'USUARIOS',
+                'modulo' => 'DEPENDENCIAS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

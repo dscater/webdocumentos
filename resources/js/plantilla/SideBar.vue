@@ -80,7 +80,8 @@
                         v-if="
                             permisos.includes('usuarios.index') ||
                             permisos.includes('funcionarios.index') ||
-                            permisos.includes('dependencias.index')
+                            permisos.includes('dependencias.index') ||
+                            permisos.includes('oficinas.index')
                         "
                     >
                         ADMINISTRACIÓN:
@@ -111,15 +112,18 @@
                             <p>Dependencias</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('oficinas.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'oficinas.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list"></i>
                             <p>Oficinas</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a

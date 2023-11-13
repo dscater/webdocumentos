@@ -52,12 +52,14 @@
                                 >
 
                                 <el-input
+                                    type="textarea"
                                     placeholder="Descripción"
                                     :class="{
                                         'is-invalid': errors.descripcion,
                                     }"
                                     v-model="dependencia.descripcion"
                                     clearable
+                                    autosize
                                 >
                                 </el-input>
                                 <span

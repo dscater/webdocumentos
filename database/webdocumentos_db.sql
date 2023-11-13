@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-11-2023 a las 19:18:33
+-- Tiempo de generación: 13-11-2023 a las 19:30:17
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -211,15 +211,20 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (7, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 13:54:51<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-01-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 13:54:51<br/>user_id: 3<br/>', NULL, 'FUNCIONARIOS', '2023-11-13', '13:57:32', '2023-11-13 17:57:32', '2023-11-13 17:57:32'),
 (8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 13:58:29<br/>descripcion: <br/>fecha_baja: 2024-01-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 2<br/>observaciones: <br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 13:58:29<br/>user_id: 4<br/>', NULL, 'FUNCIONARIOS', '2023-11-13', '13:58:29', '2023-11-13 17:58:29', '2023-11-13 17:58:29'),
 (9, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 13:58:29<br/>descripcion: <br/>fecha_baja: 2024-01-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 2<br/>observaciones: <br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 13:58:29<br/>user_id: 4<br/>', NULL, 'FUNCIONARIOS', '2023-11-13', '13:58:33', '2023-11-13 17:58:33', '2023-11-13 17:58:33'),
-(10, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:05:40<br/>', NULL, 'USUARIOS', '2023-11-13', '15:05:40', '2023-11-13 19:05:40', '2023-11-13 19:05:40'),
-(11, 1, 'MODIFICACIÓN', 'EL DEPENDENCIA  MODIFICÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:05:40<br/>', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1 MOD<br/>updated_at: 2023-11-13 15:08:22<br/>', 'USUARIOS', '2023-11-13', '15:08:22', '2023-11-13 19:08:22', '2023-11-13 19:08:22'),
-(12, 1, 'MODIFICACIÓN', 'EL DEPENDENCIA  MODIFICÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1 MOD<br/>updated_at: 2023-11-13 15:08:22<br/>', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:08:29<br/>', 'USUARIOS', '2023-11-13', '15:08:29', '2023-11-13 19:08:29', '2023-11-13 19:08:29'),
-(13, 1, 'ELIMINACIÓN', 'EL DEPENDENCIA  ELIMINÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:08:29<br/>', NULL, 'USUARIOS', '2023-11-13', '15:09:06', '2023-11-13 19:09:06', '2023-11-13 19:09:06'),
-(14, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:09:33<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:09:33<br/>', NULL, 'USUARIOS', '2023-11-13', '15:09:33', '2023-11-13 19:09:33', '2023-11-13 19:09:33'),
-(15, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:10:25<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>id: 2<br/>nombre: DEPENDENCIA #2<br/>updated_at: 2023-11-13 15:10:25<br/>', NULL, 'USUARIOS', '2023-11-13', '15:10:25', '2023-11-13 19:10:25', '2023-11-13 19:10:25'),
+(10, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:05:40<br/>', NULL, 'DEPENDENCIAS', '2023-11-13', '15:05:40', '2023-11-13 19:05:40', '2023-11-13 19:05:40'),
+(11, 1, 'MODIFICACIÓN', 'EL DEPENDENCIA  MODIFICÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:05:40<br/>', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1 MOD<br/>updated_at: 2023-11-13 15:08:22<br/>', 'DEPENDENCIAS', '2023-11-13', '15:08:22', '2023-11-13 19:08:22', '2023-11-13 19:08:22'),
+(12, 1, 'MODIFICACIÓN', 'EL DEPENDENCIA  MODIFICÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1 MOD<br/>updated_at: 2023-11-13 15:08:22<br/>', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:08:29<br/>', 'DEPENDENCIAS', '2023-11-13', '15:08:29', '2023-11-13 19:08:29', '2023-11-13 19:08:29'),
+(13, 1, 'ELIMINACIÓN', 'EL DEPENDENCIA  ELIMINÓ UN DEPENDENCIA', 'created_at: 2023-11-13 15:05:40<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:08:29<br/>', NULL, 'DEPENDENCIAS', '2023-11-13', '15:09:06', '2023-11-13 19:09:06', '2023-11-13 19:09:06'),
+(14, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:09:33<br/>descripcion: DESC. DEPENDENCIA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: DEPENDENCIA #1<br/>updated_at: 2023-11-13 15:09:33<br/>', NULL, 'DEPENDENCIAS', '2023-11-13', '15:09:33', '2023-11-13 19:09:33', '2023-11-13 19:09:33'),
+(15, 1, 'CREACIÓN', 'EL DEPENDENCIA  REGISTRO UN DEPENDENCIA', 'created_at: 2023-11-13 15:10:25<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>id: 2<br/>nombre: DEPENDENCIA #2<br/>updated_at: 2023-11-13 15:10:25<br/>', NULL, 'DEPENDENCIAS', '2023-11-13', '15:10:25', '2023-11-13 19:10:25', '2023-11-13 19:10:25'),
 (16, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'acceso: 0<br/>ci: 1234<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-11-08 11:03:56<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-11-08<br/>fono: 77777<br/>foto: 1699455836_JPERES.jpg<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$Y3d5nYIEvQPOHFGubIiTqusMG.jnalhHtURER4udFPVJs.Wehpili<br/>paterno: PERES<br/>tipo: OPERADOR<br/>updated_at: 2023-11-13 12:29:29<br/>usuario: JPERES<br/>', 'acceso: 1<br/>ci: 1234<br/>ci_exp: LP<br/>correo: <br/>created_at: 2023-11-08 11:03:56<br/>dir: LOS OLIVOS<br/>fecha_registro: 2023-11-08<br/>fono: 77777<br/>foto: 1699455836_JPERES.jpg<br/>id: 2<br/>materno: MAMANI<br/>nombre: JUAN<br/>password: $2y$10$Y3d5nYIEvQPOHFGubIiTqusMG.jnalhHtURER4udFPVJs.Wehpili<br/>paterno: PERES<br/>tipo: OPERADOR<br/>updated_at: 2023-11-13 15:14:36<br/>usuario: JPERES<br/>', 'USUARIOS', '2023-11-13', '15:14:36', '2023-11-13 19:14:36', '2023-11-13 19:14:36'),
 (17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 15:16:54<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-06-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 15:16:54<br/>user_id: 3<br/>', NULL, 'FUNCIONARIOS', '2023-11-13', '15:16:54', '2023-11-13 19:16:54', '2023-11-13 19:16:54'),
-(18, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 15:16:54<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-06-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 15:16:54<br/>user_id: 3<br/>', 'codigo: F001<br/>created_at: 2023-11-13 15:16:54<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-06-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 15:16:54<br/>user_id: 3<br/>', 'FUNCIONARIOS', '2023-11-13', '15:16:57', '2023-11-13 19:16:57', '2023-11-13 19:16:57');
+(18, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN FUNCIONARIO', 'codigo: F001<br/>created_at: 2023-11-13 15:16:54<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-06-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 15:16:54<br/>user_id: 3<br/>', 'codigo: F001<br/>created_at: 2023-11-13 15:16:54<br/>descripcion: DESCRIPCION FUNCIONARIO<br/>fecha_baja: 2024-06-01<br/>fecha_item: 2023-01-01<br/>fecha_registro: 2023-11-13<br/>gestion_ingreso: 2023<br/>id: 1<br/>observaciones: OBSERVACIONES FUNCIONARIO<br/>tipo_ingreso: NORMAL<br/>updated_at: 2023-11-13 15:16:54<br/>user_id: 3<br/>', 'FUNCIONARIOS', '2023-11-13', '15:16:57', '2023-11-13 19:16:57', '2023-11-13 19:16:57'),
+(19, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1<br/>updated_at: 2023-11-13 15:29:21<br/>', NULL, 'OFICINAS', '2023-11-13', '15:29:21', '2023-11-13 19:29:21', '2023-11-13 19:29:21'),
+(20, 1, 'MODIFICACIÓN', 'EL OFICINA  MODIFICÓ UNA OFICINA', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1<br/>updated_at: 2023-11-13 15:29:21<br/>', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1 MOD<br/>updated_at: 2023-11-13 15:29:31<br/>', 'OFICINAS', '2023-11-13', '15:29:31', '2023-11-13 19:29:31', '2023-11-13 19:29:31'),
+(21, 1, 'ELIMINACIÓN', 'EL OFICINA  ELIMINÓ UNA OFICINA', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1 MOD<br/>updated_at: 2023-11-13 15:29:31<br/>', NULL, 'OFICINAS', '2023-11-13', '15:29:36', '2023-11-13 19:29:36', '2023-11-13 19:29:36'),
+(22, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:29:57<br/>descripcion: DESC. OFICINA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1<br/>updated_at: 2023-11-13 15:29:57<br/>', NULL, 'OFICINAS', '2023-11-13', '15:29:57', '2023-11-13 19:29:57', '2023-11-13 19:29:57'),
+(23, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:30:02<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>id: 2<br/>nombre: OFICINA #2<br/>updated_at: 2023-11-13 15:30:02<br/>', NULL, 'OFICINAS', '2023-11-13', '15:30:02', '2023-11-13 19:30:02', '2023-11-13 19:30:02');
 
 -- --------------------------------------------------------
 
@@ -266,6 +271,14 @@ CREATE TABLE `oficinas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `oficinas`
+--
+
+INSERT INTO `oficinas` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'OFICINA #1', 'DESC. OFICINA 1', '2023-11-13', '2023-11-13 19:29:57', '2023-11-13 19:29:57'),
+(2, 'OFICINA #2', '', '2023-11-13', '2023-11-13 19:30:02', '2023-11-13 19:30:02');
 
 -- --------------------------------------------------------
 
@@ -512,7 +525,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -524,7 +537,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `oficinas`
 --
 ALTER TABLE `oficinas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
