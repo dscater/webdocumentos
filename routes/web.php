@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UserController;
@@ -33,9 +34,10 @@ Route::middleware(['auth'])->group(function () {
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 
-        // Route::resource('repositorios', RepositorioController::class)->only([
-        //     'index', 'store', 'update', 'destroy', 'show'
-        // ]);
+        // Funcionarios
+        Route::resource('funcionarios', FuncionarioController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
 
         // REPORTES
         Route::post('reportes/usuarios', [ReporteController::class, 'usuarios']);

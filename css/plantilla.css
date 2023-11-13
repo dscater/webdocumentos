@@ -53422,7 +53422,8 @@ a.text-muted:hover {
     color: white;
 }
 
-.content-wrapper .card {
+.content-wrapper .card,
+.content-wrapper label {
     color: black;
 }
 .bg-azul {

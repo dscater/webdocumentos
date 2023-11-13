@@ -77,19 +77,25 @@
                     </li>
                     <li
                         class="nav-header font-weight-bold"
-                        v-if="permisos.includes('usuarios.index')"
+                        v-if="
+                            permisos.includes('usuarios.index') ||
+                            permisos.includes('funcionarios.index')
+                        "
                     >
                         ADMINISTRACIÓN:
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('funcionarios.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'funcionarios.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>Funcionarios</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a

@@ -50,6 +50,11 @@ class UserController extends Controller
             'usuarios.edit',
             'usuarios.destroy',
 
+            'funcionarios.index',
+            'funcionarios.create',
+            'funcionarios.edit',
+            'funcionarios.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
@@ -156,41 +161,6 @@ class UserController extends Controller
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
                 'descripcion' => 'EL USUARIO ' . Auth::user()->usuario . ' MODIFICÓ UN USUARIO',
-                'datos_original' => $datos_original,
-                'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'USUARIOS',
-                'fecha' => date('Y-m-d'),
-                'hora' => date('H:i:s')
-            ]);
-
-            DB::commit();
-            return response()->JSON([
-                'sw' => true,
-                'usuario' => $usuario,
-                'msj' => 'El registro se actualizó de forma correcta'
-            ], 200);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->JSON([
-                'sw' => false,
-                'message' => $e->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function asignarConfiguracion(User $usuario)
-    {
-        DB::beginTransaction();
-        try {
-            $datos_original = HistorialAccion::getDetalleRegistro($usuario, "users");
-            DB::update("UPDATE users SET configuracion=0;");
-            $usuario->configuracion = 1;
-            $usuario->save();
-            $datos_nuevo = HistorialAccion::getDetalleRegistro($usuario, "users");
-            HistorialAccion::create([
-                'user_id' => Auth::user()->id,
-                'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->usuario . ' LE ASIGNÓ LA CONFIGURACIÓN DEL SISTEMA AL USUARIO ' . $usuario->usuario,
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'USUARIOS',

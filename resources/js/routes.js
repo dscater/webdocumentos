@@ -35,6 +35,14 @@ export default new Router({
                 .default,
         },
 
+        // Funcionarios
+        {
+            path: "/funcionarios",
+            name: "funcionarios.index",
+            component: require("./components/modulos/funcionarios/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

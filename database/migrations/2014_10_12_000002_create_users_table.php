@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string("materno", 255)->nullable();
             $table->string("ci", 40);
             $table->string("ci_exp", 20);
-            $table->string("dir", 255);
+            $table->string("dir", 255)->nullable();
             $table->string("correo", 255)->nullable();
             $table->string("fono", 255)->nullable();
             $table->enum("tipo", ["ADMINISTRADOR", "FUNCIONARIO"]);

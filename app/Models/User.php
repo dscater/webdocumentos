@@ -91,13 +91,8 @@ class User extends Authenticatable
         return asset('imgs/users/default.png');
     }
 
-    public function empresas()
+    public function funcionario()
     {
-        return $this->hasMany(Empresa::class, 'user_id');
-    }
-
-    public function valoracion_user()
-    {
-        return $this->hasMany(ValoracionUser::class, 'user_id');
+        return $this->hasOne(Funcionario::class, 'user_id');
     }
 }
