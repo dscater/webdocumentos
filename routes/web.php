@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReporteController;
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         // Usuarios
+        Route::post('usuarios/updatePassword/{usuario}', [UserController::class, 'updatePassword']);
         Route::post('usuarios/imprimirCredencial/{usuario}', [UserController::class, 'imprimirCredencial']);
         Route::get('usuarios/getUsuarioTipo', [UserController::class, 'getUsuarioTipo']);
         Route::get('usuarios/getUsuario/{usuario}', [UserController::class, 'getUsuario']);
@@ -36,6 +38,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Funcionarios
         Route::resource('funcionarios', FuncionarioController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Dependencias
+        Route::resource('dependencias', DependenciaController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

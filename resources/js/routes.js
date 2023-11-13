@@ -43,6 +43,14 @@ export default new Router({
                 .default,
         },
 
+        // Depdendencias
+        {
+            path: "/dependencias",
+            name: "dependencias.index",
+            component: require("./components/modulos/dependencias/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

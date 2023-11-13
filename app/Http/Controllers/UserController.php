@@ -55,12 +55,20 @@ class UserController extends Controller
             'funcionarios.edit',
             'funcionarios.destroy',
 
+            'dependencias.index',
+            'dependencias.create',
+            'dependencias.edit',
+            'dependencias.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
             "reportes.usuarios"
         ],
-        "OPERADOR" => [],
+        "OPERADOR" => [
+            'dependencias.index',
+        ],
+        "FUNCIONARIO" => [],
     ];
 
 
@@ -287,16 +295,6 @@ class UserController extends Controller
         }
     }
 
-    public function imprimirCredencial(User $usuario)
-    {
-
-
-
-        $pdf = PDF::loadView('reportes.credencial', compact('usuario'))->setPaper('letter', 'portrait');
-        $pdf->setPaper([0, 0, 350, 150], 'cm');
-        return $pdf->download('Credencial.pdf');
-    }
-
     public function getPermisos(User $usuario)
     {
         $tipo = $usuario->tipo;
@@ -379,5 +377,16 @@ class UserController extends Controller
             $usuarios = User::where("id", "!=", 1)->get();
         }
         return response()->JSON($usuarios);
+    }
+
+    public function updatePassword(User $usuario, Request $request)
+    {
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+
+        return response()->JSON([
+            "sw" => true,
+            "message" => "Contraseña actualizada con éxito"
+        ]);
     }
 }
