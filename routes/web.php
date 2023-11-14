@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\DependenciaController;
+use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OficinaController;
@@ -49,6 +50,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Oficinas
         Route::resource('oficinas', OficinaController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Estantes
+        Route::resource('estantes', EstanteController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

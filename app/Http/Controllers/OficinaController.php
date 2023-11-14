@@ -16,7 +16,7 @@ class OficinaController extends Controller
 
     public $mensajes = [
         'nombre.required' => 'Este campo es obligatorio',
-        'nombre.min' => 'Debes ingressar al menos 4 carácteres',
+        'nombre.min' => 'Debes ingresar al menos 4 carácteres',
     ];
 
     public function index(Request $request)
@@ -38,7 +38,7 @@ class OficinaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL OFICINA ' . Auth::user()->oficina . ' REGISTRO UNA OFICINA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->oficina . ' REGISTRO UNA OFICINA',
                 'datos_original' => $datos_original,
                 'modulo' => 'OFICINAS',
                 'fecha' => date('Y-m-d'),
@@ -71,7 +71,7 @@ class OficinaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL OFICINA ' . Auth::user()->oficina . ' MODIFICÓ UNA OFICINA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->oficina . ' MODIFICÓ UNA OFICINA',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'OFICINAS',
@@ -110,7 +110,7 @@ class OficinaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL OFICINA ' . Auth::user()->oficina . ' ELIMINÓ UNA OFICINA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->oficina . ' ELIMINÓ UNA OFICINA',
                 'datos_original' => $datos_original,
                 'modulo' => 'OFICINAS',
                 'fecha' => date('Y-m-d'),

@@ -59,6 +59,14 @@ export default new Router({
                 .default,
         },
 
+        // Estantes
+        {
+            path: "/estantes",
+            name: "estantes.index",
+            component: require("./components/modulos/estantes/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

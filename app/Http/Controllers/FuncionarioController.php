@@ -28,7 +28,7 @@ class FuncionarioController extends Controller
         'codigo.required' => 'Este campo es obligatorio',
         'codigo.unique' => 'El código que ingreso ya fue asignado a otro funcionario',
         'nombre.required' => 'Este campo es obligatorio',
-        'nombre.min' => 'Debes ingressar al menos 4 carácteres',
+        'nombre.min' => 'Debes ingresar al menos 4 carácteres',
         'paterno.required' => 'Este campo es obligatorio',
         'paterno.min' => 'Debes ingresar al menos 4 carácteres',
         'ci.required' => 'Este campo es obligatorio',

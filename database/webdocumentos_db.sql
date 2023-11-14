@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-11-2023 a las 19:30:17
+-- Tiempo de generación: 14-11-2023 a las 15:54:01
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -149,6 +149,14 @@ CREATE TABLE `estantes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `estantes`
+--
+
+INSERT INTO `estantes` (`id`, `nombre`, `nivel`, `division`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'ESTANTE #1', 3, 5, 'DESC. ESTANTE 1', '2023-11-14', '2023-11-14 15:53:40', '2023-11-14 15:53:40'),
+(2, 'ESTANTE #2', 3, 4, '', '2023-11-14', '2023-11-14 15:53:51', '2023-11-14 15:53:51');
+
 -- --------------------------------------------------------
 
 --
@@ -224,7 +232,12 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (20, 1, 'MODIFICACIÓN', 'EL OFICINA  MODIFICÓ UNA OFICINA', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1<br/>updated_at: 2023-11-13 15:29:21<br/>', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1 MOD<br/>updated_at: 2023-11-13 15:29:31<br/>', 'OFICINAS', '2023-11-13', '15:29:31', '2023-11-13 19:29:31', '2023-11-13 19:29:31'),
 (21, 1, 'ELIMINACIÓN', 'EL OFICINA  ELIMINÓ UNA OFICINA', 'created_at: 2023-11-13 15:29:21<br/>descripcion: DESC OFICINA 1 MOD<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1 MOD<br/>updated_at: 2023-11-13 15:29:31<br/>', NULL, 'OFICINAS', '2023-11-13', '15:29:36', '2023-11-13 19:29:36', '2023-11-13 19:29:36'),
 (22, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:29:57<br/>descripcion: DESC. OFICINA 1<br/>fecha_registro: 2023-11-13<br/>id: 1<br/>nombre: OFICINA #1<br/>updated_at: 2023-11-13 15:29:57<br/>', NULL, 'OFICINAS', '2023-11-13', '15:29:57', '2023-11-13 19:29:57', '2023-11-13 19:29:57'),
-(23, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:30:02<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>id: 2<br/>nombre: OFICINA #2<br/>updated_at: 2023-11-13 15:30:02<br/>', NULL, 'OFICINAS', '2023-11-13', '15:30:02', '2023-11-13 19:30:02', '2023-11-13 19:30:02');
+(23, 1, 'CREACIÓN', 'EL OFICINA  REGISTRO UNA OFICINA', 'created_at: 2023-11-13 15:30:02<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>id: 2<br/>nombre: OFICINA #2<br/>updated_at: 2023-11-13 15:30:02<br/>', NULL, 'OFICINAS', '2023-11-13', '15:30:02', '2023-11-13 19:30:02', '2023-11-13 19:30:02'),
+(24, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1<br/>nivel: 3<br/>division: 6<br/>descripcion: DESCRIPCION ESTANTE #1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:00<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:00', '2023-11-14 15:53:00', '2023-11-14 15:53:00'),
+(25, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1<br/>nivel: 3<br/>division: 6<br/>descripcion: DESCRIPCION ESTANTE #1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:00<br/>', 'id: 1<br/>nombre: ESTANTE #1 MOD<br/>nivel: 4<br/>division: 7<br/>descripcion: DESCRIPCION ESTANTE #1 MOD<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:09<br/>', 'ESTANTES', '2023-11-14', '11:53:09', '2023-11-14 15:53:09', '2023-11-14 15:53:09'),
+(26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1 MOD<br/>nivel: 4<br/>division: 7<br/>descripcion: DESCRIPCION ESTANTE #1 MOD<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:09<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:19', '2023-11-14 15:53:19', '2023-11-14 15:53:19'),
+(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1<br/>nivel: 3<br/>division: 5<br/>descripcion: DESC. ESTANTE 1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:40<br/>updated_at: 2023-11-14 11:53:40<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:40', '2023-11-14 15:53:40', '2023-11-14 15:53:40'),
+(28, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 2<br/>nombre: ESTANTE #2<br/>nivel: 3<br/>division: 4<br/>descripcion: <br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:51<br/>updated_at: 2023-11-14 11:53:51<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:51', '2023-11-14 15:53:51', '2023-11-14 15:53:51');
 
 -- --------------------------------------------------------
 
@@ -513,7 +526,7 @@ ALTER TABLE `documentos`
 -- AUTO_INCREMENT de la tabla `estantes`
 --
 ALTER TABLE `estantes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `funcionarios`
@@ -525,7 +538,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`

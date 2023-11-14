@@ -16,7 +16,7 @@ class DependenciaController extends Controller
 
     public $mensajes = [
         'nombre.required' => 'Este campo es obligatorio',
-        'nombre.min' => 'Debes ingressar al menos 4 carácteres',
+        'nombre.min' => 'Debes ingresar al menos 4 carácteres',
     ];
 
     public function index(Request $request)
@@ -38,7 +38,7 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' REGISTRO UNA DEPENDENCIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->dependencia . ' REGISTRO UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
                 'modulo' => 'DEPENDENCIAS',
                 'fecha' => date('Y-m-d'),
@@ -71,7 +71,7 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' MODIFICÓ UNA DEPENDENCIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->dependencia . ' MODIFICÓ UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'DEPENDENCIAS',
@@ -110,7 +110,7 @@ class DependenciaController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL DEPENDENCIA ' . Auth::user()->dependencia . ' ELIMINÓ UNA DEPENDENCIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->dependencia . ' ELIMINÓ UNA DEPENDENCIA',
                 'datos_original' => $datos_original,
                 'modulo' => 'DEPENDENCIAS',
                 'fecha' => date('Y-m-d'),

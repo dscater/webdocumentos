@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public $mensajes = [
         'nombre.required' => 'Este campo es obligatorio',
-        'nombre.min' => 'Debes ingressar al menos 4 carácteres',
+        'nombre.min' => 'Debes ingresar al menos 4 carácteres',
         'paterno.required' => 'Este campo es obligatorio',
         'paterno.min' => 'Debes ingresar al menos 4 carácteres',
         'ci.required' => 'Este campo es obligatorio',
@@ -64,6 +64,11 @@ class UserController extends Controller
             'oficinas.create',
             'oficinas.edit',
             'oficinas.destroy',
+
+            'estantes.index',
+            'estantes.create',
+            'estantes.edit',
+            'estantes.destroy',
 
             'configuracion.index',
             'configuracion.edit',
