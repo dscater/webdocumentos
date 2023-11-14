@@ -82,7 +82,8 @@
                             permisos.includes('funcionarios.index') ||
                             permisos.includes('dependencias.index') ||
                             permisos.includes('oficinas.index') ||
-                            permisos.includes('estantes.index')
+                            permisos.includes('estantes.index') ||
+                            permisos.includes('documentos.index')
                         "
                     >
                         ADMINISTRACIÓN:
@@ -139,15 +140,18 @@
                             <p>Estantes</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('documentos.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fa fa-copy"></i>
                             <p>Documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a

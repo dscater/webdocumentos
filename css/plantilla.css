@@ -53423,6 +53423,7 @@ a.text-muted:hover {
 }
 
 .content-wrapper .card,
+.content-wrapper p,
 .content-wrapper label {
     color: black;
 }

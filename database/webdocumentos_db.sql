@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-11-2023 a las 15:54:01
+-- Tiempo de generación: 14-11-2023 a las 17:37:20
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -32,9 +32,18 @@ CREATE TABLE `adjuntar_documentos` (
   `documento_id` bigint UNSIGNED NOT NULL,
   `archivo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ext` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `adjuntar_documentos`
+--
+
+INSERT INTO `adjuntar_documentos` (`id`, `documento_id`, `archivo`, `tipo`, `ext`, `created_at`, `updated_at`) VALUES
+(1, 1, '1699983229documento.docx', 'archivo', 'docx', '2023-11-14 17:33:49', '2023-11-14 17:33:49'),
+(3, 1, '1699983430smartphone.png', 'imagen', 'png', '2023-11-14 17:37:10', '2023-11-14 17:37:10');
 
 -- --------------------------------------------------------
 
@@ -120,6 +129,7 @@ CREATE TABLE `documentos` (
   `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `dependencia_id` bigint UNSIGNED NOT NULL,
   `funcionario_id` bigint UNSIGNED NOT NULL,
+  `oficina_id` bigint UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `estante_id` bigint UNSIGNED NOT NULL,
   `nivel` int NOT NULL,
@@ -131,6 +141,13 @@ CREATE TABLE `documentos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `documentos`
+--
+
+INSERT INTO `documentos` (`id`, `codigo`, `descripcion`, `dependencia_id`, `funcionario_id`, `oficina_id`, `nombre`, `estante_id`, `nivel`, `division`, `estado`, `fecha`, `hora`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'DOC-1', 'DESCRIPCIÓN DOCUMENTO #1', 1, 1, 1, '', 1, 1, 1, 'EN ARCHIVO', '2023-11-14', '12:44:00', '2023-11-14', '2023-11-14 16:44:38', '2023-11-14 16:44:38');
 
 -- --------------------------------------------------------
 
@@ -237,7 +254,13 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (25, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1<br/>nivel: 3<br/>division: 6<br/>descripcion: DESCRIPCION ESTANTE #1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:00<br/>', 'id: 1<br/>nombre: ESTANTE #1 MOD<br/>nivel: 4<br/>division: 7<br/>descripcion: DESCRIPCION ESTANTE #1 MOD<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:09<br/>', 'ESTANTES', '2023-11-14', '11:53:09', '2023-11-14 15:53:09', '2023-11-14 15:53:09'),
 (26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1 MOD<br/>nivel: 4<br/>division: 7<br/>descripcion: DESCRIPCION ESTANTE #1 MOD<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:00<br/>updated_at: 2023-11-14 11:53:09<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:19', '2023-11-14 15:53:19', '2023-11-14 15:53:19'),
 (27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 1<br/>nombre: ESTANTE #1<br/>nivel: 3<br/>division: 5<br/>descripcion: DESC. ESTANTE 1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:40<br/>updated_at: 2023-11-14 11:53:40<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:40', '2023-11-14 15:53:40', '2023-11-14 15:53:40'),
-(28, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 2<br/>nombre: ESTANTE #2<br/>nivel: 3<br/>division: 4<br/>descripcion: <br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:51<br/>updated_at: 2023-11-14 11:53:51<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:51', '2023-11-14 15:53:51', '2023-11-14 15:53:51');
+(28, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA ESTANTE', 'id: 2<br/>nombre: ESTANTE #2<br/>nivel: 3<br/>division: 4<br/>descripcion: <br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 11:53:51<br/>updated_at: 2023-11-14 11:53:51<br/>', NULL, 'ESTANTES', '2023-11-14', '11:53:51', '2023-11-14 15:53:51', '2023-11-14 15:53:51'),
+(29, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: <br/>fecha: 2023-11-14<br/>hora: 12:35<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:38:52<br/>', NULL, 'DOCUMENTOS', '2023-11-14', '12:38:52', '2023-11-14 16:38:52', '2023-11-14 16:38:52'),
+(30, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:38:52<br/>', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:07<br/>', 'DOCUMENTOS', '2023-11-14', '12:43:07', '2023-11-14 16:43:07', '2023-11-14 16:43:07'),
+(31, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:07<br/>', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1 MOD<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:17<br/>', 'DOCUMENTOS', '2023-11-14', '12:43:17', '2023-11-14 16:43:17', '2023-11-14 16:43:17'),
+(32, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1 MOD<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:17<br/>', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:22<br/>', 'DOCUMENTOS', '2023-11-14', '12:43:22', '2023-11-14 16:43:22', '2023-11-14 16:43:22'),
+(33, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCION DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 2<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 11:35:00<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:38:52<br/>updated_at: 2023-11-14 12:43:22<br/>', NULL, 'DOCUMENTOS', '2023-11-14', '12:44:13', '2023-11-14 16:44:13', '2023-11-14 16:44:13'),
+(34, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCIÓN DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>nombre: <br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:44<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:44:38<br/>updated_at: 2023-11-14 12:44:38<br/>', NULL, 'DOCUMENTOS', '2023-11-14', '12:44:38', '2023-11-14 16:44:38', '2023-11-14 16:44:38');
 
 -- --------------------------------------------------------
 
@@ -496,7 +519,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `adjuntar_documentos`
 --
 ALTER TABLE `adjuntar_documentos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`
@@ -520,7 +543,7 @@ ALTER TABLE `devolucion_documentos`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `estantes`
@@ -538,7 +561,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`

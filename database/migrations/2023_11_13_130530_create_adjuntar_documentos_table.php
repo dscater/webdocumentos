@@ -17,6 +17,7 @@ class CreateAdjuntarDocumentosTable extends Migration
             $table->id();
             $table->unsignedBigInteger("documento_id");
             $table->string("archivo", 255);
+            $table->string("ext", 100);
             $table->string("tipo");
             $table->timestamps();
             $table->foreign("documento_id")->on("documentos")->references("id");

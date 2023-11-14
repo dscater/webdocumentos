@@ -19,6 +19,7 @@ class CreateDocumentosTable extends Migration
             $table->text("descripcion");
             $table->unsignedBigInteger("dependencia_id");
             $table->unsignedBigInteger("funcionario_id");
+            $table->unsignedBigInteger("oficina_id");
             $table->string("nombre", 255);
             $table->unsignedBigInteger("estante_id");
             $table->integer("nivel");

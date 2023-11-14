@@ -25,6 +25,13 @@ class DependenciaController extends Controller
         return response()->JSON(['dependencias' => $dependencias, 'total' => count($dependencias)], 200);
     }
 
+    public function getLastDependencia()
+    {
+        return response()->JSON([
+            "dependencia" => Dependencia::orderBy("id", "desc")->get()->first()
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);

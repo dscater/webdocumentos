@@ -67,6 +67,14 @@ export default new Router({
                 .default,
         },
 
+        // Documentos
+        {
+            path: "/documentos",
+            name: "documentos.index",
+            component: require("./components/modulos/documentos/index.vue")
+                .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

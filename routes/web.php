@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdjuntarDocumentoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\DependenciaController;
+use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
@@ -39,11 +41,13 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Funcionarios
+        Route::get("dependencias/getLastFuncionario", [FuncionarioController::class, 'getLastFuncionario']);
         Route::resource('funcionarios', FuncionarioController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 
         // Dependencias
+        Route::get("dependencias/getLastDependencia", [DependenciaController::class, 'getLastDependencia']);
         Route::resource('dependencias', DependenciaController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
@@ -54,7 +58,16 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Estantes
+        Route::get("estantes/nivel_division/{estante}", [EstanteController::class, 'nivel_division']);
         Route::resource('estantes', EstanteController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Documentos
+        Route::post('adjuntar_documentos/store/{documento}', [AdjuntarDocumentoController::class, 'store']);
+        Route::delete('adjuntar_documentos/{adjuntar_documento}', [AdjuntarDocumentoController::class, 'destroy']);
+        Route::get('documentos/adjuntar_documentos/{documento}', [DocumentoController::class, 'adjuntar_documentos']);
+        Route::resource('documentos', DocumentoController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

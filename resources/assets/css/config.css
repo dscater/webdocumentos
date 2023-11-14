@@ -15,6 +15,7 @@
 }
 
 .content-wrapper .card,
+.content-wrapper p,
 .content-wrapper label {
     color: black;
 }

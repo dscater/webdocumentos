@@ -53,6 +53,13 @@ class FuncionarioController extends Controller
         return response()->JSON(['funcionarios' => $funcionarios, 'total' => count($funcionarios)], 200);
     }
 
+    public function getLastFuncionario()
+    {
+        return response()->JSON([
+            "funcionario" => Funcionario::orderBy("id", "desc")->get()->first()
+        ]);
+    }
+
     public function store(Request $request)
     {
         $this->validacion['codigo'] = 'required|min:2|unique:funcionarios,codigo';

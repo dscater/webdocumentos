@@ -33,6 +33,26 @@ class EstanteController extends Controller
         return response()->JSON(['estantes' => $estantes, 'total' => count($estantes)], 200);
     }
 
+    public function nivel_division(Estante $estante)
+    {
+        $niveles = $estante->nivel;
+        $divisiones = $estante->division;
+
+        $list_niveles = [];
+        $list_divisiones = [];
+        for ($i = 1; $i <= $niveles; $i++) {
+            $list_niveles[] = $i;
+        }
+        for ($i = 1; $i <= $divisiones; $i++) {
+            $list_divisiones[] = $i;
+        }
+
+        return response()->JSON([
+            "niveles" => $list_niveles,
+            "divisiones" => $list_divisiones,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);
@@ -46,7 +66,7 @@ class EstanteController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' REGISTRO UNA ESTANTE',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' REGISTRO UN ESTANTE',
                 'datos_original' => $datos_original,
                 'modulo' => 'ESTANTES',
                 'fecha' => date('Y-m-d'),
@@ -79,7 +99,7 @@ class EstanteController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' MODIFICÓ UNA ESTANTE',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' MODIFICÓ UN ESTANTE',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
                 'modulo' => 'ESTANTES',
@@ -118,7 +138,7 @@ class EstanteController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' ELIMINÓ UNA ESTANTE',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->estante . ' ELIMINÓ UN ESTANTE',
                 'datos_original' => $datos_original,
                 'modulo' => 'ESTANTES',
                 'fecha' => date('Y-m-d'),

@@ -70,6 +70,11 @@ class UserController extends Controller
             'estantes.edit',
             'estantes.destroy',
 
+            'documentos.index',
+            'documentos.create',
+            'documentos.edit',
+            'documentos.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 
