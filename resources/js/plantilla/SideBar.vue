@@ -215,7 +215,7 @@
                             permisos.includes('reportes.usuarios') ||
                             permisos.includes('reportes.documentos') ||
                             permisos.includes('reportes.documentos_estados') ||
-                            permisos.includes('reportes.canitdad_documentos')
+                            permisos.includes('reportes.cantidad_documentos')
                         "
                     >
                         REPORTES:
@@ -258,13 +258,13 @@
                     </li>
                     <li
                         class="nav-item"
-                        v-if="permisos.includes('reportes.canitdad_documentos')"
+                        v-if="permisos.includes('reportes.cantidad_documentos')"
                     >
                         <router-link
-                            :to="{ name: 'reportes.canitdad_documentos' }"
+                            :to="{ name: 'reportes.cantidad_documentos' }"
                             class="nav-link"
                         >
-                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <i class="fas fa-chart-bar nav-icon"></i>
                             <p>Cantidad de Documentos por Estados</p>
                         </router-link>
                     </li>

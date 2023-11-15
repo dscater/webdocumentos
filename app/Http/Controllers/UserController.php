@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dependencia;
+use App\Models\DevolucionDocumento;
+use App\Models\Documento;
+use App\Models\Estante;
 use App\Models\HistorialAccion;
+use App\Models\PrestamoDocumento;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,18 +101,54 @@ class UserController extends Controller
             "reportes.usuarios",
             "reportes.documentos",
             "reportes.documentos_estados",
-            "reportes.canitdad_documentos",
+            "reportes.cantidad_documentos",
         ],
         "OPERADOR" => [
+            'funcionarios.index',
+            'funcionarios.create',
+            'funcionarios.edit',
+            'funcionarios.destroy',
+
             'dependencias.index',
+
+            'oficinas.index',
+
+            'estantes.index',
+
+            'documentos.index',
+            'documentos.create',
+            'documentos.edit',
+            'documentos.destroy',
+
+            'reserva_documentos.index',
+            'reserva_documentos.create',
+            'reserva_documentos.edit',
+            'reserva_documentos.destroy',
+
+            'prestamo_documentos.index',
+            'prestamo_documentos.create',
+            'prestamo_documentos.edit',
+            'prestamo_documentos.destroy',
+
+            'devolucion_documentos.index',
+            'devolucion_documentos.create',
+            'devolucion_documentos.edit',
+            'devolucion_documentos.destroy',
+
+            "reportes.documentos",
+            "reportes.documentos_estados",
+            "reportes.cantidad_documentos",
         ],
-        "FUNCIONARIO" => [],
+        "FUNCIONARIO" => [
+            'reserva_documentos.index',
+            'prestamo_documentos.index',
+        ],
     ];
 
 
     public function index(Request $request)
     {
-        $usuarios = User::where('id', '!=', 1)->get();
+        $usuarios = User::where('id', '!=', 1)->where("tipo", "!=", "FUNCIONARIO")->get();
         return response()->JSON(['usuarios' => $usuarios, 'total' => count($usuarios)], 200);
     }
 
@@ -338,41 +379,56 @@ class UserController extends Controller
     {
         $tipo = Auth::user()->tipo;
         $array_infos = [];
-        $array_infos[] = [
-            'label' => 'Préstamos',
-            'cantidad' => 0,
-            'color' => 'bg-success',
-            'icon' => asset("imgs/icon_inscripcion.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Devoluciones',
-            'cantidad' => 0,
-            'color' => 'bg-success',
-            'icon' => asset("imgs/checklist.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Dependencias',
-            'cantidad' => 0,
-            'color' => 'bg-success',
-            'icon' => asset("imgs/icon_solicitud.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Estantes',
-            'cantidad' => 0,
-            'color' => 'bg-success',
-            'icon' => asset("imgs/icon_recursos.png"),
-            "url" => "usuarios.index"
-        ];
-        $array_infos[] = [
-            'label' => 'Documentos',
-            'cantidad' => 0,
-            'color' => 'bg-success',
-            'icon' => asset("imgs/documents.png"),
-            "url" => "usuarios.index"
-        ];
+        if (in_array('prestamo_documentos.index', $this->permisos[$tipo])) {
+            $prestamo_documentos = PrestamoDocumento::all();
+            $array_infos[] = [
+                'label' => 'Préstamos',
+                'cantidad' => count($prestamo_documentos),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/icon_inscripcion.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('devolucion_documentos.index', $this->permisos[$tipo])) {
+            $devolucion_documentos = DevolucionDocumento::all();
+            $array_infos[] = [
+                'label' => 'Devoluciones',
+                'cantidad' => count($devolucion_documentos),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/checklist.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('dependencias.index', $this->permisos[$tipo])) {
+            $dependencias = Dependencia::all();
+            $array_infos[] = [
+                'label' => 'Dependencias',
+                'cantidad' => count($dependencias),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/icon_solicitud.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('estantes.index', $this->permisos[$tipo])) {
+            $estantes = Estante::all();
+            $array_infos[] = [
+                'label' => 'Estantes',
+                'cantidad' => count($estantes),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/icon_recursos.png"),
+                "url" => "usuarios.index"
+            ];
+        }
+        if (in_array('documentos.index', $this->permisos[$tipo])) {
+            $documentos = Documento::all();
+            $array_infos[] = [
+                'label' => 'Documentos',
+                'cantidad' => count($documentos),
+                'color' => 'bg-success',
+                'icon' => asset("imgs/documents.png"),
+                "url" => "usuarios.index"
+            ];
+        }
 
         if (in_array('usuarios.index', $this->permisos[$tipo])) {
             $array_infos[] = [

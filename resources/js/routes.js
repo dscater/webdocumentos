@@ -134,9 +134,9 @@ export default new Router({
             props: true,
         },
         {
-            path: "/reportes/canitdad_documentos",
-            name: "reportes.canitdad_documentos",
-            component: require("./components/modulos/reportes/canitdad_documentos.vue")
+            path: "/reportes/cantidad_documentos",
+            name: "reportes.cantidad_documentos",
+            component: require("./components/modulos/reportes/cantidad_documentos.vue")
                 .default,
             props: true,
         },

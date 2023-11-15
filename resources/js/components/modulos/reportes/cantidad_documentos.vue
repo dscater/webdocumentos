@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Reportes - Lista de Usuarios</h1>
+                        <h1>Reportes - Cantidad de Documentos por Estados</h1>
                     </div>
                 </div>
             </div>
@@ -50,44 +50,56 @@
                                                     v-text="errors.filtro[0]"
                                                 ></span>
                                             </div>
-                                            <div
+
+                                            <div1
                                                 class="form-group col-md-12"
                                                 v-if="
                                                     oReporte.filtro ==
-                                                    'Tipo de usuario'
+                                                    'Funcionario'
                                                 "
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.tipo,
+                                                            errors.funcionario_id,
                                                     }"
-                                                    >Seleccione*</label
+                                                    >Seleccionar
+                                                    Funcionario*</label
                                                 >
+
                                                 <el-select
-                                                    v-model="oReporte.tipo"
-                                                    filterable
-                                                    placeholder="Seleccione"
-                                                    class="d-block"
+                                                    class="w-100"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.tipo,
+                                                            errors.funcionario_id,
                                                     }"
+                                                    v-model="
+                                                        oReporte.funcionario_id
+                                                    "
+                                                    filterable
+                                                    clearable
                                                 >
                                                     <el-option
-                                                        v-for="item in listTipos"
-                                                        :key="item"
-                                                        :label="item"
-                                                        :value="item"
+                                                        v-for="item in listFuncionarios"
+                                                        :key="item.id"
+                                                        :value="item.id"
+                                                        :label="
+                                                            item.codigo +
+                                                            ' - ' +
+                                                            item.full_name
+                                                        "
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.tipo"
-                                                    v-text="errors.tipo[0]"
+                                                    v-if="errors.funcionario_id"
+                                                    v-text="
+                                                        errors.funcionario_id[0]
+                                                    "
                                                 ></span>
-                                            </div>
+                                            </div1>
+
                                             <div
                                                 class="form-group col-md-12"
                                                 v-if="
@@ -156,6 +168,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12" id="container"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,77 +184,123 @@
 export default {
     data() {
         return {
+            user: JSON.parse(localStorage.getItem("user")),
+            fullscreenLoading: true,
             loadingWindow: Loading.service({
                 fullscreen: this.fullscreenLoading,
             }),
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                tipo: "",
+                funcionario_id: "",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: [
-                "Todos",
-                "Tipo de usuario",
-                // "Rango de fechas",
-            ],
-            listTipos: ["ADMINISTRADOR", "OPERADOR"],
+            listFiltro: ["Todos", "Funcionario", "Rango de fechas"],
+            listFuncionarios: [],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
+        this.getFuncionarios();
     },
     methods: {
+        getFuncionarios() {
+            axios.get(main_url + "/admin/funcionarios").then((response) => {
+                this.listFuncionarios = response.data.funcionarios;
+            });
+        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
         generaReporte() {
             this.enviando = true;
-            let config = {
-                responseType: "blob",
-            };
             axios
                 .post(
-                    main_url + "/admin/reportes/usuarios",
-                    this.oReporte,
-                    config
+                    main_url + "/admin/reportes/cantidad_documentos",
+                    this.oReporte
                 )
-                .then((res) => {
+                .then((response) => {
                     this.errors = [];
-                    this.enviando = false;
-                    let pdfBlob = new Blob([res.data], {
-                        type: "application/pdf",
+                    Highcharts.chart("container", {
+                        chart: {
+                            type: "column",
+                        },
+                        title: {
+                            text: "CANTIDAD DE DOCUMENTOS",
+                        },
+                        subtitle: {
+                            text: "",
+                        },
+                        xAxis: {
+                            type: "category",
+                            // crosshair: true,
+                            labels: {
+                                rotation: -45,
+                                style: {
+                                    fontSize: "13px",
+                                    fontFamily: "Verdana, sans-serif",
+                                },
+                            },
+                        },
+                        yAxis: {
+                            min: 0,
+                            title: {
+                                text: "TOTAL",
+                            },
+                        },
+                        legend: {
+                            enabled: true,
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: "{point.y:.2f}",
+                                },
+                            },
+                        },
+                        tooltip: {
+                            headerFormat:
+                                '<span style="font-size:10px"><b>{point.key}</b></span><table>',
+                            pointFormat:
+                                '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+                            footerFormat: "</table>",
+                            shared: true,
+                            useHTML: true,
+                        },
+
+                        series: [
+                            {
+                                name: "Documentos",
+                                colorByPoint: true,
+                                data: response.data.datos,
+                                dataLabels: {
+                                    rotation: 0,
+                                    color: "#000000",
+                                    format: "{point.y:.0f}", // one decimal
+                                    y: 0, // 10 pixels down from the top
+                                    style: {
+                                        fontSize: "13px",
+                                        fontFamily: "Verdana, sans-serif",
+                                    },
+                                },
+                            },
+                        ],
                     });
-                    let urlReporte = URL.createObjectURL(pdfBlob);
-                    window.open(urlReporte);
+                    this.enviando = false;
                 })
                 .catch(async (error) => {
-                    let responseObj = await error.response.data.text();
-                    responseObj = JSON.parse(responseObj);
-                    console.log(error);
                     this.enviando = false;
                     if (error.response) {
                         if (error.response.status === 422) {
-                            this.errors = responseObj.errors;
-                        }
-                        if (
-                            error.response.status === 420 ||
-                            error.response.status === 419 ||
-                            error.response.status === 401
-                        ) {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Error",
-                                html: responseObj.message,
-                                showConfirmButton: false,
-                                timer: 2000,
-                            });
-                            window.location = "/";
+                            this.errors = error.response.data.errors;
                         }
                     }
                 });

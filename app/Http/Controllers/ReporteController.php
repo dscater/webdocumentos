@@ -158,7 +158,68 @@ class ReporteController extends Controller
         return $pdf->download('documentos_estados.pdf');
     }
 
-    public function canitdad_documentos(Request $request)
+    public function cantidad_documentos(Request $request)
     {
+        $filtro = $request->filtro;
+        $funcionario = $request->funcionario_id;
+        $fecha_ini = $request->fecha_ini;
+        $fecha_fin = $request->fecha_fin;
+
+
+        $datos = [];
+
+        $documentos_archivo = Documento::where("estado", "EN ARCHIVO")->get();
+        $documentos_reservado = Documento::where("estado", "RESERVADO")->get();
+        $documentos_prestado = Documento::where("estado", "PRESTADO")->get();
+
+        if ($filtro != 'Todos') {
+
+            if ($filtro == 'Funcionario') {
+                $documentos_archivo = Documento::select("documentos.*")
+                    ->where("funcionario_id", $funcionario)
+                    ->where("estado", "EN ARCHIVO")
+                    ->get();
+                $documentos_reservado = Documento::select("documentos.*")
+                    ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
+                    ->where("reserva_documentos.funcionario_id", $funcionario)
+                    ->where("estado", "RESERVADO")
+                    ->distinct()
+                    ->get();
+                $documentos_prestado = Documento::select("documentos.*")
+                    ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
+                    ->where("prestamo_documentos.funcionario_id", $funcionario)
+                    ->where("estado", "PRESTADO")
+                    ->distinct()
+                    ->get();
+            }
+            if ($filtro == 'Rango de fechas') {
+                $documentos_archivo = Documento::select("documentos.*")
+                    ->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "EN ARCHIVO")
+                    ->get();
+                $documentos_reservado = Documento::select("documentos.*")
+                    ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
+                    ->whereBetween("reserva_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "RESERVADO")
+                    ->distinct()
+                    ->get();
+                $documentos_prestado = Documento::select("documentos.*")
+                    ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
+                    ->whereBetween("prestamo_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "PRESTADO")
+                    ->distinct()
+                    ->get();
+            }
+        }
+
+        $datos = [
+            ["EN ARCHIVO", (int)count($documentos_archivo)],
+            ["RESERVADO", (int)count($documentos_reservado)],
+            ["PRESTADO", (int)count($documentos_prestado)],
+        ];
+
+        return response()->JSON([
+            "datos" => $datos
+        ]);
     }
 }

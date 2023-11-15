@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('reportes/usuarios', [ReporteController::class, 'usuarios']);
         Route::post('reportes/documentos', [ReporteController::class, 'documentos']);
         Route::post('reportes/documentos_estados', [ReporteController::class, 'documentos_estados']);
-        Route::post('reportes/canitdad_documentos', [ReporteController::class, 'canitdad_documentos']);
+        Route::post('reportes/cantidad_documentos', [ReporteController::class, 'cantidad_documentos']);
     });
 });
 
