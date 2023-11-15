@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Reportes - Lista de Usuarios</h1>
+                        <h1>Reportes - Documentos por Estados</h1>
                     </div>
                 </div>
             </div>
@@ -54,38 +54,79 @@
                                                 class="form-group col-md-12"
                                                 v-if="
                                                     oReporte.filtro ==
-                                                    'Tipo de usuario'
+                                                    'Funcionario'
                                                 "
                                             >
                                                 <label
                                                     :class="{
                                                         'text-danger':
-                                                            errors.tipo,
+                                                            errors.funcionario,
                                                     }"
                                                     >Seleccione*</label
                                                 >
                                                 <el-select
-                                                    v-model="oReporte.tipo"
+                                                    v-model="oReporte.funcionario"
                                                     filterable
                                                     placeholder="Seleccione"
                                                     class="d-block"
                                                     :class="{
                                                         'is-invalid':
-                                                            errors.tipo,
+                                                            errors.funcionario,
                                                     }"
                                                 >
                                                     <el-option
-                                                        v-for="item in listTipos"
-                                                        :key="item"
-                                                        :label="item"
-                                                        :value="item"
+                                                        v-for="item in listFuncionarios"
+                                                        :key="item.id"
+                                                        :value="item.id"
+                                                        :label="
+                                                            item.codigo +
+                                                            ' - ' +
+                                                            item.full_name
+                                                        "
                                                     >
                                                     </el-option>
                                                 </el-select>
                                                 <span
                                                     class="error invalid-feedback"
-                                                    v-if="errors.tipo"
-                                                    v-text="errors.tipo[0]"
+                                                    v-if="errors.funcionario"
+                                                    v-text="errors.funcionario[0]"
+                                                ></span>
+                                            </div>
+                                            <div
+                                                class="form-group col-md-12"
+                                                v-if="
+                                                    oReporte.filtro == 'Estado'
+                                                "
+                                            >
+                                                <label
+                                                    :class="{
+                                                        'text-danger':
+                                                            errors.estado,
+                                                    }"
+                                                    >Seleccione*</label
+                                                >
+                                                <el-select
+                                                    v-model="oReporte.estado"
+                                                    filterable
+                                                    placeholder="Seleccione"
+                                                    class="d-block"
+                                                    :class="{
+                                                        'is-invalid':
+                                                            errors.estado,
+                                                    }"
+                                                >
+                                                    <el-option
+                                                        v-for="item in listEstados"
+                                                        :key="item"
+                                                        :value="item"
+                                                        :label="item"
+                                                    >
+                                                    </el-option>
+                                                </el-select>
+                                                <span
+                                                    class="error invalid-feedback"
+                                                    v-if="errors.estado"
+                                                    v-text="errors.estado[0]"
                                                 ></span>
                                             </div>
                                             <div
@@ -175,26 +216,30 @@ export default {
             errors: [],
             oReporte: {
                 filtro: "Todos",
-                tipo: "",
+                funcionario: "",
+                estado: "EN ARCHIVO",
                 fecha_ini: "",
                 fecha_fin: "",
             },
             aFechas: [],
             enviando: false,
             textoBtn: "Generar Reporte",
-            listFiltro: [
-                "Todos",
-                "Tipo de usuario",
-                // "Rango de fechas",
-            ],
-            listTipos: ["ADMINISTRADOR", "OPERADOR"],
+            listFiltro: ["Todos", "Funcionario", "Estado", "Rango de fechas"],
+            listEstados: ["EN ARCHIVO", "RESERVADO", "PRESTADO"],
+            listFuncionarios: [],
             errors: [],
         };
     },
     mounted() {
         this.loadingWindow.close();
+        this.getFuncionarios();
     },
     methods: {
+        getFuncionarios() {
+            axios.get(main_url + "/admin/funcionarios").then((response) => {
+                this.listFuncionarios = response.data.funcionarios;
+            });
+        },
         limpiarFormulario() {
             this.oReporte.filtro = "Todos";
         },
@@ -205,7 +250,7 @@ export default {
             };
             axios
                 .post(
-                    main_url + "/admin/reportes/usuarios",
+                    main_url + "/admin/reportes/documentos_estados",
                     this.oReporte,
                     config
                 )

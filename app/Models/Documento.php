@@ -25,7 +25,19 @@ class Documento extends Model
     ];
 
 
-    protected $appends = ['fecha_registro_t', 'fecha_hora_t'];
+    protected $appends = ['fecha_registro_t', 'fecha_hora_t', 'ultimo_prestamo', 'ultima_reserva'];
+
+    public function getUltimoPrestamoAttribute()
+    {
+        $prestamo = PrestamoDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->get()->first();
+        return $prestamo;
+    }
+
+    public function getUltimaReservaAttribute()
+    {
+        $reserva = ReservaDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->get()->first();
+        return $reserva;
+    }
 
     public function getFechaHoraTAttribute()
     {

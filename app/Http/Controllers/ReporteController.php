@@ -67,6 +67,95 @@ class ReporteController extends Controller
 
     public function documentos_estados(Request $request)
     {
+        $filtro =  $request->filtro;
+        $funcionario =  $request->funcionario;
+        $estado =  $request->estado;
+        $fecha_ini =  $request->fecha_ini;
+        $fecha_fin =  $request->fecha_fin;
+
+        if ($filtro == 'Funcionario') {
+            $request->validate([
+                "funcionario" => "required"
+            ], [
+                "funcionario.required" => "Debes seleccionar un funcionario"
+            ]);
+        }
+
+        if ($filtro == 'Estado') {
+            $request->validate([
+                "estado" => "required"
+            ], [
+                "estado.required" => "Debes seleccionar un estado"
+            ]);
+        }
+
+        if ($filtro == 'Rango de fechas') {
+            $request->validate([
+                "fecha_ini" => "required|date",
+                "fecha_fin" => "required|date",
+            ], [
+                "fecha_ini.required" => "Debes ingresar la fecha inicial",
+                "fecha_ini.date" => "Debes ingresar una fecha valida",
+                "fecha_fin.required" => "Debes ingresar la fecha final",
+                "fecha_fin.date" => "Debes ingresar una fecha valida",
+            ]);
+        }
+
+        $documentos_archivo = Documento::where("estado", "EN ARCHIVO")->get();
+        $documentos_reservado = Documento::where("estado", "RESERVADO")->get();
+        $documentos_prestado = Documento::where("estado", "PRESTADO")->get();
+
+        if ($filtro != 'Todos') {
+
+            if ($filtro == 'Funcionario') {
+                $documentos_archivo = Documento::select("documentos.*")
+                    ->where("funcionario_id", $funcionario)
+                    ->where("estado", "EN ARCHIVO")
+                    ->get();
+                $documentos_reservado = Documento::select("documentos.*")
+                    ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
+                    ->where("reserva_documentos.funcionario_id", $funcionario)
+                    ->where("estado", "RESERVADO")
+                    ->distinct()
+                    ->get();
+                $documentos_prestado = Documento::select("documentos.*")
+                    ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
+                    ->where("prestamo_documentos.funcionario_id", $funcionario)
+                    ->where("estado", "PRESTADO")
+                    ->distinct()
+                    ->get();
+            }
+            if ($filtro == 'Rango de fechas') {
+                $documentos_archivo = Documento::select("documentos.*")
+                    ->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "EN ARCHIVO")
+                    ->get();
+                $documentos_reservado = Documento::select("documentos.*")
+                    ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
+                    ->whereBetween("reserva_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "RESERVADO")
+                    ->distinct()
+                    ->get();
+                $documentos_prestado = Documento::select("documentos.*")
+                    ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
+                    ->whereBetween("prestamo_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
+                    ->where("estado", "PRESTADO")
+                    ->distinct()
+                    ->get();
+            }
+        }
+
+        $pdf = PDF::loadView('reportes.documentos_estados', compact('documentos_archivo', 'documentos_reservado', 'documentos_prestado', 'filtro', 'estado'))->setPaper('legal', 'landscape');
+
+        // ENUMERAR LAS PÁGINAS USANDO CANVAS
+        $pdf->output();
+        $dom_pdf = $pdf->getDomPDF();
+        $canvas = $dom_pdf->get_canvas();
+        $alto = $canvas->get_height();
+        $ancho = $canvas->get_width();
+        $canvas->page_text($ancho - 90, $alto - 25, "Página {PAGE_NUM} de {PAGE_COUNT}", null, 9, array(0, 0, 0));
+
+        return $pdf->download('documentos_estados.pdf');
     }
 
     public function canitdad_documentos(Request $request)
