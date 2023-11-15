@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-11-2023 a las 14:54:44
+-- Tiempo de generación: 15-11-2023 a las 15:35:52
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -137,7 +137,6 @@ CREATE TABLE `documentos` (
   `dependencia_id` bigint UNSIGNED NOT NULL,
   `funcionario_id` bigint UNSIGNED NOT NULL,
   `oficina_id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `estante_id` bigint UNSIGNED NOT NULL,
   `nivel` int NOT NULL,
   `division` int NOT NULL,
@@ -153,8 +152,9 @@ CREATE TABLE `documentos` (
 -- Volcado de datos para la tabla `documentos`
 --
 
-INSERT INTO `documentos` (`id`, `codigo`, `descripcion`, `dependencia_id`, `funcionario_id`, `oficina_id`, `nombre`, `estante_id`, `nivel`, `division`, `estado`, `fecha`, `hora`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'DOC-1', 'DESCRIPCIÓN DOCUMENTO #1', 1, 1, 1, '', 1, 1, 1, 'EN ARCHIVO', '2023-11-14', '12:44:00', '2023-11-14', '2023-11-14 16:44:38', '2023-11-15 14:52:14');
+INSERT INTO `documentos` (`id`, `codigo`, `descripcion`, `dependencia_id`, `funcionario_id`, `oficina_id`, `estante_id`, `nivel`, `division`, `estado`, `fecha`, `hora`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'DOC-1', 'DESCRIPCIÓN DOCUMENTO #1', 1, 1, 1, 1, 1, 1, 'EN ARCHIVO', '2023-11-14', '12:44:00', '2023-11-14', '2023-11-14 16:44:38', '2023-11-15 14:52:14'),
+(2, 'DOC-2', 'DOCUMENTO #2', 2, 1, 2, 1, 1, 2, 'RESERVADO', '2023-11-15', '11:34:00', '2023-11-15', '2023-11-15 15:35:11', '2023-11-15 15:35:30');
 
 -- --------------------------------------------------------
 
@@ -283,7 +283,9 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (47, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA DEVOLUCIÓN DE DOCUMENTO', 'id: 2<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:43:00<br/>descripcion: DEVOLUCION #1<br/>observacion: OBSERVACION DEVOLUCION #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:44:04<br/>updated_at: 2023-11-15 10:44:04<br/>', 'id: 2<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:43:00<br/>descripcion: DEVOLUCION #1 MOD<br/>observacion: OBSERVACION DEVOLUCION #1 MOD<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:44:04<br/>updated_at: 2023-11-15 10:51:19<br/>', 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-15', '10:51:19', '2023-11-15 14:51:19', '2023-11-15 14:51:19'),
 (48, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA DEVOLUCIÓN DE DOCUMENTO', 'id: 2<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:43:00<br/>descripcion: DEVOLUCION #1 MOD<br/>observacion: OBSERVACION DEVOLUCION #1 MOD<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:44:04<br/>updated_at: 2023-11-15 10:51:19<br/>', 'id: 2<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:43:00<br/>descripcion: DEVOLUCION #1<br/>observacion: OBSERVACION DEVOLUCION #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:44:04<br/>updated_at: 2023-11-15 10:51:25<br/>', 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-15', '10:51:25', '2023-11-15 14:51:25', '2023-11-15 14:51:25'),
 (49, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA DEVOLUCIÓN DE DOCUMENTO', 'id: 2<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:43:00<br/>descripcion: DEVOLUCION #1<br/>observacion: OBSERVACION DEVOLUCION #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:44:04<br/>updated_at: 2023-11-15 10:51:25<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-15', '10:51:29', '2023-11-15 14:51:29', '2023-11-15 14:51:29'),
-(50, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEVOLUCIÓN DE DOCUMENTO', 'id: 1<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:52<br/>descripcion: DESCRIPCION DEVOLUCION #1<br/>observacion: OBSERVACION DEVOLUCION #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:52:14<br/>updated_at: 2023-11-15 10:52:14<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-15', '10:52:14', '2023-11-15 14:52:14', '2023-11-15 14:52:14');
+(50, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEVOLUCIÓN DE DOCUMENTO', 'id: 1<br/>documento_id: 1<br/>funcionario_id: 1<br/>cantidad_documentos: 3<br/>fecha: 2023-11-15<br/>hora: 10:52<br/>descripcion: DESCRIPCION DEVOLUCION #1<br/>observacion: OBSERVACION DEVOLUCION #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 10:52:14<br/>updated_at: 2023-11-15 10:52:14<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-15', '10:52:14', '2023-11-15 14:52:14', '2023-11-15 14:52:14'),
+(51, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN DOCUMENTO', 'id: 2<br/>codigo: DOC-2<br/>descripcion: DOCUMENTO #2<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 1<br/>nivel: 1<br/>division: 2<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 11:34<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:11<br/>updated_at: 2023-11-15 11:35:11<br/>', NULL, 'DOCUMENTOS', '2023-11-15', '11:35:11', '2023-11-15 15:35:11', '2023-11-15 15:35:11'),
+(52, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA RESERVA DE DOCUMENTO', 'id: 2<br/>documento_id: 2<br/>funcionario_id: 1<br/>descripcion: RESERVA DOCUMENTO #2<br/>observacion: OBSERVACION #2<br/>fecha: 2023-11-15<br/>hora: 11:35<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:30<br/>updated_at: 2023-11-15 11:35:30<br/>', NULL, 'RESERVA DE DOCUMENTOS', '2023-11-15', '11:35:30', '2023-11-15 15:35:30', '2023-11-15 15:35:30');
 
 -- --------------------------------------------------------
 
@@ -410,7 +412,8 @@ CREATE TABLE `reserva_documentos` (
 --
 
 INSERT INTO `reserva_documentos` (`id`, `documento_id`, `funcionario_id`, `descripcion`, `observacion`, `fecha`, `hora`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'RESERVA DOCUMENTO #1', 'OBSERVACION RESERVA #1', '2023-11-15', '09:34:00', '2023-11-15', '2023-11-15 13:35:10', '2023-11-15 13:35:10');
+(1, 1, 1, 'RESERVA DOCUMENTO #1', 'OBSERVACION RESERVA #1', '2023-11-15', '09:34:00', '2023-11-15', '2023-11-15 13:35:10', '2023-11-15 13:35:10'),
+(2, 2, 1, 'RESERVA DOCUMENTO #2', 'OBSERVACION #2', '2023-11-15', '11:35:00', '2023-11-15', '2023-11-15 15:35:30', '2023-11-15 15:35:30');
 
 -- --------------------------------------------------------
 
@@ -580,7 +583,7 @@ ALTER TABLE `devolucion_documentos`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estantes`
@@ -598,7 +601,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -628,7 +631,7 @@ ALTER TABLE `prestamo_documentos`
 -- AUTO_INCREMENT de la tabla `reserva_documentos`
 --
 ALTER TABLE `reserva_documentos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

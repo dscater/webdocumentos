@@ -211,7 +211,12 @@
                     </li>
                     <li
                         class="nav-header font-weight-bold"
-                        v-if="permisos.includes('reportes.usuarios')"
+                        v-if="
+                            permisos.includes('reportes.usuarios') ||
+                            permisos.includes('reportes.documentos') ||
+                            permisos.includes('reportes.documentos_estados') ||
+                            permisos.includes('reportes.canitdad_documentos')
+                        "
                     >
                         REPORTES:
                     </li>
@@ -225,6 +230,42 @@
                         >
                             <i class="fas fa-file-pdf nav-icon"></i>
                             <p>Lista de Usuarios</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('reportes.documentos')"
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.documentos' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Documentos</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('reportes.documentos_estados')"
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.documentos_estados' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Documentos por Estados</p>
+                        </router-link>
+                    </li>
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('reportes.canitdad_documentos')"
+                    >
+                        <router-link
+                            :to="{ name: 'reportes.canitdad_documentos' }"
+                            class="nav-link"
+                        >
+                            <i class="fas fa-file-pdf nav-icon"></i>
+                            <p>Cantidad de Documentos por Estados</p>
                         </router-link>
                     </li>
                     <li class="nav-header font-weight-bold">OTRAS OPCIONES:</li>

@@ -15,7 +15,6 @@ class Documento extends Model
         "dependencia_id",
         "funcionario_id",
         "oficina_id",
-        "nombre",
         "estante_id",
         "nivel",
         "division",

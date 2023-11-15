@@ -93,7 +93,10 @@ class UserController extends Controller
             'configuracion.index',
             'configuracion.edit',
 
-            "reportes.usuarios"
+            "reportes.usuarios",
+            "reportes.documentos",
+            "reportes.documentos_estados",
+            "reportes.canitdad_documentos",
         ],
         "OPERADOR" => [
             'dependencias.index',

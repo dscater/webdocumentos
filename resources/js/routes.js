@@ -119,6 +119,27 @@ export default new Router({
                 .default,
             props: true,
         },
+        {
+            path: "/reportes/documentos",
+            name: "reportes.documentos",
+            component: require("./components/modulos/reportes/documentos.vue")
+                .default,
+            props: true,
+        },
+        {
+            path: "/reportes/documentos_estados",
+            name: "reportes.documentos_estados",
+            component: require("./components/modulos/reportes/documentos_estados.vue")
+                .default,
+            props: true,
+        },
+        {
+            path: "/reportes/canitdad_documentos",
+            name: "reportes.canitdad_documentos",
+            component: require("./components/modulos/reportes/canitdad_documentos.vue")
+                .default,
+            props: true,
+        },
 
         // PÁGINA NO ENCONTRADA
         {
