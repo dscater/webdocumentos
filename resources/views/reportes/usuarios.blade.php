@@ -135,7 +135,7 @@
         }
 
         .bg-principal {
-            background: #c57a40;
+            background: #1f6764;
             color: white;
         }
 
@@ -184,7 +184,7 @@
             @foreach ($usuarios as $user)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda"><img src="{{ asset('imgs/users/' . $user->foto) }}" alt="Foto"></td>
+                    <td class="img_celda"><img src="{{ $user->path_image }}" alt="Foto"></td>
                     <td>{{ $user->usuario }}</td>
                     <td class="centreado">{{ $user->paterno }}</td>
                     <td class="centreado">{{ $user->materno }}</td>

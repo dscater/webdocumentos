@@ -78,7 +78,9 @@
                                         v-for="item in listFuncionarios"
                                         :key="item.id"
                                         :value="item.id"
-                                        :label="item.full_name"
+                                        :label="
+                                            item.codigo + ' - ' + item.full_name
+                                        "
                                     ></el-option>
                                 </el-select>
                                 <span

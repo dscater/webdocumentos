@@ -42,6 +42,14 @@ class DocumentoController extends Controller
         return response()->JSON(['documentos' => $documentos, 'total' => count($documentos)], 200);
     }
 
+    public function prestado()
+    {
+        $documentos = Documento::with(["adjuntar_documentos", "dependencia", "funcionario", "oficina", "estante"])
+            ->where("estado", "PRESTADO")
+            ->orderBy("id", "desc")->get();
+        return response()->JSON(['documentos' => $documentos, 'total' => count($documentos)], 200);
+    }
+
     public function archivo()
     {
         $documentos = Documento::with(["adjuntar_documentos", "dependencia", "funcionario", "oficina", "estante"])

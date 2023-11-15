@@ -78,7 +78,9 @@
                                         v-for="item in listFuncionarios"
                                         :key="item.id"
                                         :value="item.id"
-                                        :label="item.full_name"
+                                        :label="
+                                            item.codigo + ' - ' + item.full_name
+                                        "
                                     ></el-option>
                                 </el-select>
                                 <span
@@ -330,7 +332,7 @@ export default {
     computed: {
         tituloModal() {
             if (this.accion == "nuevo") {
-                return "AGREGAR RESERVA DE DOCUMENTO";
+                return "AGREGAR PRESTAMO DE DOCUMENTO";
             } else {
                 return "MODIFICAR REGISTRO";
             }

@@ -84,8 +84,9 @@
                             permisos.includes('oficinas.index') ||
                             permisos.includes('estantes.index') ||
                             permisos.includes('documentos.index') ||
-                            permisos.includes('reserva_documentos.index')||
-                            permisos.includes('prestamo_documentos.index')
+                            permisos.includes('reserva_documentos.index') ||
+                            permisos.includes('prestamo_documentos.index') ||
+                            permisos.includes('devolucion_documentos.index')
                         "
                     >
                         ADMINISTRACIÓN:
@@ -181,15 +182,18 @@
                             <p>Prétamo de documentos</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('devolucion_documentos.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'devolucion_documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-clipboard-check"></i>
                             <p>Devolución de documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"

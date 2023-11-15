@@ -42,6 +42,18 @@ class PrestamoDocumentoController extends Controller
         return response()->JSON(['prestamo_documentos' => $prestamo_documentos, 'total' => count($prestamo_documentos)], 200);
     }
 
+    public function funcionario(Request $request)
+    {
+        $prestamo_documento = PrestamoDocumento::where("documento_id", $request->documento_id)
+            ->orderBy("id", "desc")
+            ->get()->first();
+
+        return response()->JSON([
+            "sw" => true,
+            "funcionario" => $prestamo_documento->funcionario
+        ]);
+    }
+
     public function adjuntar_prestamo_documentos(PrestamoDocumento $prestamo_documento)
     {
         return response()->JSON([
@@ -56,10 +68,10 @@ class PrestamoDocumentoController extends Controller
         DB::beginTransaction();
         try {
             // crear el PrestamoDocumento
-            $nuevO_prestamo_documento = PrestamoDocumento::create(array_map('mb_strtoupper', $request->all()));
-            $nuevO_prestamo_documento->documento->estado = 'PRESTADO';
-            $nuevO_prestamo_documento->documento->save();
-            $datos_original = HistorialAccion::getDetalleRegistro($nuevO_prestamo_documento, "prestamo_documentos");
+            $nuevo_prestamo_documento = PrestamoDocumento::create(array_map('mb_strtoupper', $request->all()));
+            $nuevo_prestamo_documento->documento->estado = 'PRESTADO';
+            $nuevo_prestamo_documento->documento->save();
+            $datos_original = HistorialAccion::getDetalleRegistro($nuevo_prestamo_documento, "prestamo_documentos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
@@ -73,7 +85,7 @@ class PrestamoDocumentoController extends Controller
             DB::commit();
             return response()->JSON([
                 'sw' => true,
-                'prestamo_documento' => $nuevO_prestamo_documento,
+                'prestamo_documento' => $nuevo_prestamo_documento,
                 'msj' => 'El registro se realizó de forma correcta',
             ], 200);
         } catch (\Exception $e) {

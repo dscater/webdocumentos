@@ -93,6 +93,15 @@ export default new Router({
                     .default,
         },
 
+        // Devolucion de Documentos
+        {
+            path: "/devolucion_documentos",
+            name: "devolucion_documentos.index",
+            component:
+                require("./components/modulos/devolucion_documentos/index.vue")
+                    .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",
