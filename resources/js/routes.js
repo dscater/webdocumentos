@@ -75,6 +75,15 @@ export default new Router({
                 .default,
         },
 
+        // Reserva de Documentos
+        {
+            path: "/reserva_documentos",
+            name: "reserva_documentos.index",
+            component:
+                require("./components/modulos/reserva_documentos/index.vue")
+                    .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",

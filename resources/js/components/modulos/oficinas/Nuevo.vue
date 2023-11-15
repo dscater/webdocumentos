@@ -196,7 +196,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        this.limpiaUsuario();
+                        this.limpiaOficina();
                         this.$emit("envioModal");
                         this.errors = [];
                         if (this.accion == "edit") {
@@ -247,7 +247,7 @@ export default {
             this.bModal = false;
             this.$emit("close");
         },
-        limpiaUsuario() {
+        limpiaOficina() {
             this.errors = [];
             this.oficina.nombre = "";
             this.oficina.descripcion = "";

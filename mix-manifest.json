@@ -7,6 +7,7 @@
     "/imgs/avatar.png": "/imgs/avatar.png",
     "/imgs/catalogue.png": "/imgs/catalogue.png",
     "/imgs/checklist.png": "/imgs/checklist.png",
+    "/imgs/documentos.png": "/imgs/documentos.png",
     "/imgs/documents.png": "/imgs/documents.png",
     "/imgs/fondo_direccion.jpg": "/imgs/fondo_direccion.jpg",
     "/imgs/fondo_login.jpg": "/imgs/fondo_login.jpg",
@@ -96,6 +97,5 @@
     "/fonts/Poppins/Poppins-Thin.ttf": "/fonts/Poppins/Poppins-Thin.ttf",
     "/fonts/Poppins/Poppins-ThinItalic.ttf": "/fonts/Poppins/Poppins-ThinItalic.ttf",
     "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.ttf": "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.ttf",
-    "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.woff": "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.woff",
-    "/imgs/documentos.png": "/imgs/documentos.png"
+    "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.woff": "/fonts/vendor/element-ui/lib/theme-chalk/element-icons.woff"
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ReservaDocumentoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,10 +65,16 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Documentos
+        Route::get('documentos/archivo', [DocumentoController::class, 'archivo']);
         Route::post('adjuntar_documentos/store/{documento}', [AdjuntarDocumentoController::class, 'store']);
         Route::delete('adjuntar_documentos/{adjuntar_documento}', [AdjuntarDocumentoController::class, 'destroy']);
         Route::get('documentos/adjuntar_documentos/{documento}', [DocumentoController::class, 'adjuntar_documentos']);
         Route::resource('documentos', DocumentoController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Reserva documentos
+        Route::resource('reserva_documentos', ReservaDocumentoController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

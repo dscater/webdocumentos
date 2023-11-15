@@ -12,7 +12,7 @@
                             <div class="informacion">
                                 <div class="inner">
                                     <h3>{{ item.cantidad }}</h3>
-                                    <p class="text-xl">{{ item.label }}</p>
+                                    <p class="text-xl text-white">{{ item.label }}</p>
                                 </div>
                                 <div class="icon">
                                     <img :src="item.icon" />

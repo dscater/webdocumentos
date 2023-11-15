@@ -246,7 +246,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        this.limpiaUsuario();
+                        this.limpiaEstante();
                         this.$emit("envioModal");
                         this.errors = [];
                         if (this.accion == "edit") {
@@ -297,7 +297,7 @@ export default {
             this.bModal = false;
             this.$emit("close");
         },
-        limpiaUsuario() {
+        limpiaEstante() {
             this.errors = [];
             this.estante.nombre = "";
             this.estante.nivel = "";

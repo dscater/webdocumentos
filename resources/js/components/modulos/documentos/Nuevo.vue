@@ -528,7 +528,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        this.limpiaUsuario();
+                        this.limpiaDocumento();
                         this.$emit("envioModal");
                         this.errors = [];
                         if (this.accion == "edit") {
@@ -579,7 +579,7 @@ export default {
             this.bModal = false;
             this.$emit("close");
         },
-        limpiaUsuario() {
+        limpiaDocumento() {
             this.errors = [];
             this.documento.descripcion = "";
             this.documento.dependencia_id = "";

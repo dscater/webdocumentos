@@ -199,7 +199,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500,
                         });
-                        this.limpiaUsuario();
+                        this.limpiaDependencia();
                         this.$emit("envioModal");
                         this.errors = [];
                         if (this.accion == "edit") {
@@ -250,7 +250,7 @@ export default {
             this.bModal = false;
             this.$emit("close");
         },
-        limpiaUsuario() {
+        limpiaDependencia() {
             this.errors = [];
             this.dependencia.nombre = "";
             this.dependencia.descripcion = "";
