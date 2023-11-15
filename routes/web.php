@@ -8,6 +8,7 @@ use App\Http\Controllers\EstanteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OficinaController;
+use App\Http\Controllers\PrestamoDocumentoController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\ReservaDocumentoController;
 use App\Http\Controllers\UserController;
@@ -65,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Documentos
+        Route::get('documentos/archivo_reservado', [DocumentoController::class, 'archivo_reservado']);
         Route::get('documentos/archivo', [DocumentoController::class, 'archivo']);
         Route::post('adjuntar_documentos/store/{documento}', [AdjuntarDocumentoController::class, 'store']);
         Route::delete('adjuntar_documentos/{adjuntar_documento}', [AdjuntarDocumentoController::class, 'destroy']);
@@ -75,6 +77,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Reserva documentos
         Route::resource('reserva_documentos', ReservaDocumentoController::class)->only([
+            'index', 'store', 'update', 'destroy', 'show'
+        ]);
+
+        // Prestamo documentos
+        Route::resource('prestamo_documentos', PrestamoDocumentoController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);
 

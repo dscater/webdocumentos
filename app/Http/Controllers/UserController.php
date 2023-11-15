@@ -80,6 +80,11 @@ class UserController extends Controller
             'reserva_documentos.edit',
             'reserva_documentos.destroy',
 
+            'prestamo_documentos.index',
+            'prestamo_documentos.create',
+            'prestamo_documentos.edit',
+            'prestamo_documentos.destroy',
+
             'configuracion.index',
             'configuracion.edit',
 

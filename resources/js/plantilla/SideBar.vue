@@ -84,7 +84,8 @@
                             permisos.includes('oficinas.index') ||
                             permisos.includes('estantes.index') ||
                             permisos.includes('documentos.index') ||
-                            permisos.includes('reserva_documentos.index')
+                            permisos.includes('reserva_documentos.index')||
+                            permisos.includes('prestamo_documentos.index')
                         "
                     >
                         ADMINISTRACIÓN:
@@ -167,15 +168,18 @@
                             <p>Reserva de Documentos</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a
-                            href=""
+                    <li
+                        class="nav-item"
+                        v-if="permisos.includes('prestamo_documentos.index')"
+                    >
+                        <router-link
+                            :to="{ name: 'prestamo_documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-clipboard-list"></i>
                             <p>Prétamo de documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a

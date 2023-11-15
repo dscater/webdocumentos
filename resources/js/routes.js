@@ -84,6 +84,15 @@ export default new Router({
                     .default,
         },
 
+        // Prestamo de Documentos
+        {
+            path: "/prestamo_documentos",
+            name: "prestamo_documentos.index",
+            component:
+                require("./components/modulos/prestamo_documentos/index.vue")
+                    .default,
+        },
+
         // Configuración
         {
             path: "/configuracion",
