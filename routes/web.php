@@ -15,6 +15,16 @@ use App\Http\Controllers\ReservaDocumentoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// VACIAR CACHE
+Route::get('/cache_clear', function () {
+    Artisan::call("route:clear");
+    Artisan::call("route:cache");
+    Artisan::call("view:clear");
+    Artisan::call("config:cache");
+    Artisan::call("optimize");
+
+    return 'Cache borrada correctamente<br/><a href="' . url("/") . '">Volver al inicio<a>';
+});
 
 // LOGIN
 Route::post('/login', [LoginController::class, 'login']);
