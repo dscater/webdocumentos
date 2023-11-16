@@ -75,6 +75,10 @@
                                                 :items="listRegistros"
                                                 show-empty
                                                 stacked="md"
+                                                :head-variant="'dark'"
+                                                no-border-collapse
+                                                bordered
+                                                hover
                                                 responsive
                                                 :current-page="currentPage"
                                                 :per-page="perPage"

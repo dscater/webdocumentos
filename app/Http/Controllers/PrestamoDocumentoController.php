@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
 use App\Models\PrestamoDocumento;
+use App\Models\ReservaDocumento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,11 +39,21 @@ class PrestamoDocumentoController extends Controller
 
     public function index(Request $request)
     {
-        $prestamo_documentos = PrestamoDocumento::with(["documento", "funcionario", "dependencia"])->orderBy("id", "desc")->get();
+        $prestamo_documentos = [];
+        if (Auth::user()->tipo == 'FUNCIONARIO') {
+            $prestamo_documentos = PrestamoDocumento::with(["documento", "funcionario", "dependencia"])
+                ->where("funcionario_id", Auth::user()->funcionario->id)
+                ->where("estado", 1)
+                ->orderBy("id", "desc")
+                ->get();
+        } else {
+            $prestamo_documentos = PrestamoDocumento::with(["documento", "funcionario", "dependencia"])->orderBy("id", "desc")->get();
+        }
+
         return response()->JSON(['prestamo_documentos' => $prestamo_documentos, 'total' => count($prestamo_documentos)], 200);
     }
 
-    public function funcionario(Request $request)
+    public function funcionario_prestamo(Request $request)
     {
         $prestamo_documento = PrestamoDocumento::where("documento_id", $request->documento_id)
             ->orderBy("id", "desc")
@@ -50,7 +61,8 @@ class PrestamoDocumentoController extends Controller
 
         return response()->JSON([
             "sw" => true,
-            "funcionario" => $prestamo_documento->funcionario
+            "funcionario" => $prestamo_documento->funcionario,
+            "prestamo_documento" => $prestamo_documento->load(["documento", "funcionario", "dependencia"])
         ]);
     }
 
@@ -67,10 +79,18 @@ class PrestamoDocumentoController extends Controller
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
         try {
+            // buscar la reserva si esta existe
+            $existe_reserva = ReservaDocumento::where("documento_id", $request->documento_id)->where("estado", 1)->get()->first();
+
             // crear el PrestamoDocumento
             $nuevo_prestamo_documento = PrestamoDocumento::create(array_map('mb_strtoupper', $request->all()));
             $nuevo_prestamo_documento->documento->estado = 'PRESTADO';
             $nuevo_prestamo_documento->documento->save();
+            if ($existe_reserva) {
+                $existe_reserva->estado = 0;
+                $existe_reserva->save();
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_prestamo_documento, "prestamo_documentos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,

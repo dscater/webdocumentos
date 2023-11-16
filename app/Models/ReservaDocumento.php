@@ -17,6 +17,7 @@ class ReservaDocumento extends Model
         "fecha",
         "hora",
         "fecha_registro",
+        "estado"
     ];
 
     protected $appends = ['fecha_registro_t', 'fecha_hora_t'];

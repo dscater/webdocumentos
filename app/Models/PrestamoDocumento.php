@@ -20,6 +20,7 @@ class PrestamoDocumento extends Model
         "descripcion",
         "observacion",
         "fecha_registro",
+        "estado"
     ];
 
     protected $appends = ['fecha_registro_t', 'fecha_hora_t'];

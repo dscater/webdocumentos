@@ -22,7 +22,7 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="row">
+                        <div class="row" v-show="!ver_prestamo">
                             <div class="form-group col-md-12">
                                 <label
                                     :class="{
@@ -39,7 +39,7 @@
                                     v-model="devolucion_documento.documento_id"
                                     filterable
                                     clearable
-                                    @change="getFuncionario"
+                                    @change="getFuncionarioPrestamo"
                                 >
                                     <el-option
                                         v-for="item in listDocumentos"
@@ -57,6 +57,22 @@
                                     v-if="errors.documento_id"
                                     v-text="errors.documento_id[0]"
                                 ></span>
+                            </div>
+                            <div
+                                class="col-md-12 text-center"
+                                v-show="devolucion_documento.documento_id != ''"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    :class="[
+                                        ver_prestamo
+                                            ? 'btn-gray'
+                                            : 'btn-primary',
+                                    ]"
+                                    v-html="txtBtnVerPrestamo"
+                                    @click="ver_prestamo = !ver_prestamo"
+                                ></button>
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Funcionario*</label>
@@ -190,6 +206,82 @@
                                 ></span>
                             </div>
                         </div>
+                        <div class="row" v-if="ver_prestamo">
+                            <div
+                                class="col-md-12 text-center"
+                                v-show="devolucion_documento.documento_id != ''"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    :class="[
+                                        ver_prestamo
+                                            ? 'btn-secondary'
+                                            : 'btn-primary',
+                                    ]"
+                                    v-html="txtBtnVerPrestamo"
+                                    @click="ver_prestamo = !ver_prestamo"
+                                ></button>
+                            </div>
+                            <div class="col-md-12">
+                                <p>
+                                    <strong>Código Documento: </strong>
+                                    {{ prestamo_documento.documento.codigo }}
+                                </p>
+                                <p>
+                                    <strong>Funcionario: </strong>
+                                    {{
+                                        prestamo_documento.funcionario.full_name
+                                    }}
+                                </p>
+                                <p>
+                                    <strong>Tipo de Documento: </strong>
+                                    {{ prestamo_documento.tipo_documento }}
+                                </p>
+                                <p>
+                                    <strong>Cantidad de Documentos: </strong>
+                                    {{ prestamo_documento.cantidad_documentos }}
+                                </p>
+                                <p>
+                                    <strong>Fecha: </strong>
+                                    {{ prestamo_documento.fecha }}
+                                </p>
+                                <p>
+                                    <strong>Hora: </strong>
+                                    {{ prestamo_documento.hora }}
+                                </p>
+                                <p>
+                                    <strong>Dependencia: </strong>
+                                    {{ prestamo_documento.dependencia.nombre }}
+                                </p>
+                                <p>
+                                    <strong>Descripción: </strong>
+                                    {{ prestamo_documento.descripcion }}
+                                </p>
+                                <p>
+                                    <strong>Observación: </strong>
+                                    {{ prestamo_documento.observacion }}
+                                </p>
+                            </div>
+                            <div
+                                class="col-md-12 text-center"
+                                v-show="devolucion_documento.documento_id != ''"
+                            >
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    :class="[
+                                        ver_prestamo
+                                            ? 'btn-secondary'
+                                            : 'btn-primary',
+                                    ]"
+                                    @click="ver_prestamo = !ver_prestamo"
+                                >
+                                    <i class="fa fa-arrow-left"></i> Volver al
+                                    formulario
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -278,6 +370,12 @@ export default {
             }
             return "";
         },
+        txtBtnVerPrestamo() {
+            if (this.ver_prestamo) {
+                return `<i class="fa fa-eye-slash"></i> Ocultar préstamo`;
+            }
+            return `<i class="fa fa-eye"></i> Ver préstamo`;
+        },
     },
     data() {
         return {
@@ -288,11 +386,13 @@ export default {
             listFuncionarios: [],
             errors: [],
             funcionario: null,
+            prestamo_documento: null,
+            ver_prestamo: false,
         };
     },
     mounted() {
         this.bModal = this.muestra_modal;
-        this.getFuncionario();
+        this.getFuncionarioPrestamo();
     },
     methods: {
         getDocumentosPrestado() {
@@ -305,22 +405,28 @@ export default {
                             this.listDocumentos.push(
                                 this.devolucion_documento.documento
                             );
-                            this.getFuncionario();
+                            this.getFuncionarioPrestamo();
                         }, 300);
                     }
                 });
         },
-        getFuncionario() {
+        getFuncionarioPrestamo() {
             if (this.devolucion_documento.documento_id != "") {
                 axios
-                    .get(main_url + "/admin/prestamo_documentos/funcionario", {
-                        params: {
-                            documento_id:
-                                this.devolucion_documento.documento_id,
-                        },
-                    })
+                    .get(
+                        main_url +
+                            "/admin/prestamo_documentos/funcionario_prestamo",
+                        {
+                            params: {
+                                documento_id:
+                                    this.devolucion_documento.documento_id,
+                            },
+                        }
+                    )
                     .then((response) => {
                         this.funcionario = response.data.funcionario;
+                        this.prestamo_documento =
+                            response.data.prestamo_documento;
                         setTimeout(() => {
                             this.devolucion_documento.funcionario_id =
                                 this.funcionario.id;
@@ -329,6 +435,8 @@ export default {
             } else {
                 this.devolucion_documento.funcionario_id = "";
                 this.funcionario = null;
+                this.prestamo_documento = null;
+                this.ver_prestamo = false;
             }
         },
         setRegistroModal() {

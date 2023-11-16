@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DevolucionDocumento;
 use App\Models\HistorialAccion;
+use App\Models\PrestamoDocumento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,10 +50,21 @@ class DevolucionDocumentoController extends Controller
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
         try {
+            $prestamo_documento = PrestamoDocumento::where("documento_id", $request->documento_id)
+                ->where("estado", 1)
+                ->get()
+                ->first();
+
             // crear el DevolucionDocumento
             $nueva_devolucion_documento = DevolucionDocumento::create(array_map('mb_strtoupper', $request->all()));
             $nueva_devolucion_documento->documento->estado = 'EN ARCHIVO';
             $nueva_devolucion_documento->documento->save();
+
+            if ($prestamo_documento) {
+                $prestamo_documento->estado = 0;
+                $prestamo_documento->save();
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($nueva_devolucion_documento, "devolucion_documentos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,

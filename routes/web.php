@@ -83,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Prestamo documentos
-        Route::get('prestamo_documentos/funcionario', [PrestamoDocumentoController::class, 'funcionario']);
+        Route::get('prestamo_documentos/funcionario_prestamo', [PrestamoDocumentoController::class, 'funcionario_prestamo']);
         Route::resource('prestamo_documentos', PrestamoDocumentoController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);

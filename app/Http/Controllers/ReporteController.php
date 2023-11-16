@@ -110,36 +110,36 @@ class ReporteController extends Controller
             if ($filtro == 'Funcionario') {
                 $documentos_archivo = Documento::select("documentos.*")
                     ->where("funcionario_id", $funcionario)
-                    ->where("estado", "EN ARCHIVO")
+                    ->where("documentos.estado", "EN ARCHIVO")
                     ->get();
                 $documentos_reservado = Documento::select("documentos.*")
                     ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
                     ->where("reserva_documentos.funcionario_id", $funcionario)
-                    ->where("estado", "RESERVADO")
+                    ->where("documentos.estado", "RESERVADO")
                     ->distinct()
                     ->get();
                 $documentos_prestado = Documento::select("documentos.*")
                     ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
                     ->where("prestamo_documentos.funcionario_id", $funcionario)
-                    ->where("estado", "PRESTADO")
+                    ->where("documentos.estado", "PRESTADO")
                     ->distinct()
                     ->get();
             }
             if ($filtro == 'Rango de fechas') {
                 $documentos_archivo = Documento::select("documentos.*")
                     ->whereBetween("fecha_registro", [$fecha_ini, $fecha_fin])
-                    ->where("estado", "EN ARCHIVO")
+                    ->where("documentos.estado", "EN ARCHIVO")
                     ->get();
                 $documentos_reservado = Documento::select("documentos.*")
                     ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
                     ->whereBetween("reserva_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
-                    ->where("estado", "RESERVADO")
+                    ->where("documentos.estado", "RESERVADO")
                     ->distinct()
                     ->get();
                 $documentos_prestado = Documento::select("documentos.*")
                     ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
                     ->whereBetween("prestamo_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
-                    ->where("estado", "PRESTADO")
+                    ->where("documentos.estado", "PRESTADO")
                     ->distinct()
                     ->get();
             }

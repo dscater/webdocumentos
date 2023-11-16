@@ -31,7 +31,15 @@ class ReservaDocumentoController extends Controller
 
     public function index(Request $request)
     {
-        $reserva_documentos = ReservaDocumento::with(["documento", "funcionario"])->orderBy("id", "desc")->get();
+        $reserva_documentos = [];
+        if (Auth::user()->tipo == 'FUNCIONARIO') {
+            $reserva_documentos = ReservaDocumento::with(["documento", "funcionario"])
+                ->where("funcionario_id", Auth::user()->funcionario->id)
+                ->where("estado", 1)
+                ->orderBy("id", "desc")->get();
+        } else {
+            $reserva_documentos = ReservaDocumento::with(["documento", "funcionario"])->orderBy("id", "desc")->get();
+        }
         return response()->JSON(['reserva_documentos' => $reserva_documentos, 'total' => count($reserva_documentos)], 200);
     }
 

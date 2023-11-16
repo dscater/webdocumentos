@@ -380,7 +380,13 @@ class UserController extends Controller
         $tipo = Auth::user()->tipo;
         $array_infos = [];
         if (in_array('prestamo_documentos.index', $this->permisos[$tipo])) {
-            $prestamo_documentos = PrestamoDocumento::all();
+            $prestamo_documentos = [];
+            if ($tipo == 'FUNCIONARIO') {
+                $prestamo_documentos = PrestamoDocumento::where("funcionario_id", Auth::user()->funcionario->id)->where("estado", 1)->get();
+            } else {
+                $prestamo_documentos = PrestamoDocumento::all();
+            }
+
             $array_infos[] = [
                 'label' => 'Préstamos',
                 'cantidad' => count($prestamo_documentos),

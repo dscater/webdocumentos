@@ -29,13 +29,13 @@ class Documento extends Model
 
     public function getUltimoPrestamoAttribute()
     {
-        $prestamo = PrestamoDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->get()->first();
+        $prestamo = PrestamoDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->where("estado", 1)->get()->first();
         return $prestamo;
     }
 
     public function getUltimaReservaAttribute()
     {
-        $reserva = ReservaDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->get()->first();
+        $reserva = ReservaDocumento::where("documento_id", $this->id)->orderBy("id", "desc")->where("estado", 1)->get()->first();
         return $reserva;
     }
 
