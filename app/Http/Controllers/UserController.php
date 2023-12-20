@@ -392,7 +392,8 @@ class UserController extends Controller
                 'cantidad' => count($prestamo_documentos),
                 'color' => 'bg-success',
                 'icon' => asset("imgs/icon_inscripcion.png"),
-                "url" => "usuarios.index"
+                // "url" => "prestamo_documentos.index",
+                "url" => ""
             ];
         }
         if (in_array('devolucion_documentos.index', $this->permisos[$tipo])) {
@@ -402,7 +403,8 @@ class UserController extends Controller
                 'cantidad' => count($devolucion_documentos),
                 'color' => 'bg-success',
                 'icon' => asset("imgs/checklist.png"),
-                "url" => "usuarios.index"
+                // "url" => "devolucion_documentos.index",
+                "url" => ""
             ];
         }
         if (in_array('dependencias.index', $this->permisos[$tipo])) {
@@ -412,7 +414,7 @@ class UserController extends Controller
                 'cantidad' => count($dependencias),
                 'color' => 'bg-success',
                 'icon' => asset("imgs/icon_solicitud.png"),
-                "url" => "usuarios.index"
+                "url" => "dependencias.index"
             ];
         }
         if (in_array('estantes.index', $this->permisos[$tipo])) {
@@ -422,7 +424,7 @@ class UserController extends Controller
                 'cantidad' => count($estantes),
                 'color' => 'bg-success',
                 'icon' => asset("imgs/icon_recursos.png"),
-                "url" => "usuarios.index"
+                "url" => "estantes.index"
             ];
         }
         if (in_array('documentos.index', $this->permisos[$tipo])) {
@@ -432,7 +434,7 @@ class UserController extends Controller
                 'cantidad' => count($documentos),
                 'color' => 'bg-success',
                 'icon' => asset("imgs/documents.png"),
-                "url" => "usuarios.index"
+                "url" => "documentos.index"
             ];
         }
 
