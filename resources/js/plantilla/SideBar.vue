@@ -236,7 +236,7 @@
                     >
                         REPORTES:
                     </li>
-                    <!-- <li
+                    <li
                         class="nav-item"
                         v-if="permisos.includes('reportes.usuarios')"
                     >
@@ -283,9 +283,9 @@
                             <i class="fas fa-chart-bar nav-icon"></i>
                             <p>Cantidad de Documentos por Estados</p>
                         </router-link>
-                    </li> -->
-
-                    <li
+                    </li>
+                    <!-- DESHABBILITADO -->
+                    <!-- <li
                         class="nav-item"
                         v-if="permisos.includes('reportes.usuarios')"
                     >
@@ -320,7 +320,7 @@
                             <i class="fas fa-chart-bar nav-icon"></i>
                             <p>Cantidad de Documentos por Estados</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-header font-weight-bold">OTRAS OPCIONES:</li>
                     <li
                         class="nav-item"
