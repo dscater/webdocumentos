@@ -163,4 +163,9 @@ export default {
 .login-page .card-header {
     border-bottom: solid 1px var(--red);
 }
+
+.login-page .card-header img{
+    display: block;
+    margin: auto;
+}
 </style>
