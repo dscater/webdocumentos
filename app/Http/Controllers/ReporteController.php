@@ -182,13 +182,13 @@ class ReporteController extends Controller
                 $documentos_reservado = Documento::select("documentos.*")
                     ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
                     ->where("reserva_documentos.funcionario_id", $funcionario)
-                    ->where("estado", "RESERVADO")
+                    ->where("documentos.estado", "RESERVADO")
                     ->distinct()
                     ->get();
                 $documentos_prestado = Documento::select("documentos.*")
                     ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
                     ->where("prestamo_documentos.funcionario_id", $funcionario)
-                    ->where("estado", "PRESTADO")
+                    ->where("documentos.estado", "PRESTADO")
                     ->distinct()
                     ->get();
             }
@@ -200,13 +200,13 @@ class ReporteController extends Controller
                 $documentos_reservado = Documento::select("documentos.*")
                     ->join("reserva_documentos", "reserva_documentos.documento_id", "=", "documentos.id")
                     ->whereBetween("reserva_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
-                    ->where("estado", "RESERVADO")
+                    ->where("documentos.estado", "RESERVADO")
                     ->distinct()
                     ->get();
                 $documentos_prestado = Documento::select("documentos.*")
                     ->join("prestamo_documentos", "prestamo_documentos.documento_id", "=", "documentos.id")
                     ->whereBetween("prestamo_documentos.fecha_registro", [$fecha_ini, $fecha_fin])
-                    ->where("estado", "PRESTADO")
+                    ->where("documentos.estado", "PRESTADO")
                     ->distinct()
                     ->get();
             }

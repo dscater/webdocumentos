@@ -160,56 +160,40 @@
                         class="nav-item"
                         v-if="permisos.includes('reserva_documentos.index')"
                     >
-                        <!-- <router-link
+                        <router-link
                             :to="{ name: 'reserva_documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-list-alt"></i>
                             <p>Reserva de Documentos</p>
-                        </router-link> -->
-                        <a
-                            href=""
-                            class="nav-link"
-                            v-loading.fullscreen.lock="fullscreenLoading"
-                        >
-                            <i class="nav-icon fas fa-list-alt"></i>
-                            <p>Reserva de Documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"
                         v-if="permisos.includes('prestamo_documentos.index')"
                     >
-                        <!-- <router-link
+                        <router-link
                             :to="{ name: 'prestamo_documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-clipboard-list"></i>
                             <p>Préstamo de documentos</p>
-                        </router-link> -->
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>Préstamo de documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"
                         v-if="permisos.includes('devolucion_documentos.index')"
                     >
-                        <!-- <router-link
+                        <router-link
                             :to="{ name: 'devolucion_documentos.index' }"
                             class="nav-link"
                             v-loading.fullscreen.lock="fullscreenLoading"
                         >
                             <i class="nav-icon fas fa-clipboard-check"></i>
                             <p>Devolución de documentos</p>
-                        </router-link> -->
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-clipboard-check"></i>
-                            <p>Devolución de documentos</p>
-                        </a>
+                        </router-link>
                     </li>
                     <li
                         class="nav-item"
@@ -284,43 +268,6 @@
                             <p>Cantidad de Documentos por Estados</p>
                         </router-link>
                     </li>
-                    <!-- DESHABBILITADO -->
-                    <!-- <li
-                        class="nav-item"
-                        v-if="permisos.includes('reportes.usuarios')"
-                    >
-                        <a href="" class="nav-link">
-                            <i class="fas fa-file-pdf nav-icon"></i>
-                            <p>Lista de Usuarios</p>
-                        </a>
-                    </li>
-                    <li
-                        class="nav-item"
-                        v-if="permisos.includes('reportes.documentos')"
-                    >
-                        <a href="" class="nav-link">
-                            <i class="fas fa-file-pdf nav-icon"></i>
-                            <p>Documentos</p>
-                        </a>
-                    </li>
-                    <li
-                        class="nav-item"
-                        v-if="permisos.includes('reportes.documentos_estados')"
-                    >
-                        <a href="" class="nav-link">
-                            <i class="fas fa-file-pdf nav-icon"></i>
-                            <p>Documentos por Estados</p>
-                        </a>
-                    </li>
-                    <li
-                        class="nav-item"
-                        v-if="permisos.includes('reportes.cantidad_documentos')"
-                    >
-                        <a href="" class="nav-link">
-                            <i class="fas fa-chart-bar nav-icon"></i>
-                            <p>Cantidad de Documentos por Estados</p>
-                        </a>
-                    </li> -->
                     <li class="nav-header font-weight-bold">OTRAS OPCIONES:</li>
                     <li
                         class="nav-item"
