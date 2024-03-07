@@ -39,6 +39,7 @@
                                     v-model="prestamo_documento.documento_id"
                                     filterable
                                     clearable
+                                    @change="getDocumento"
                                 >
                                     <el-option
                                         v-for="item in listDocumentos"
@@ -102,7 +103,7 @@
                                         'is-invalid': errors.tipo_documento,
                                     }"
                                     v-model="prestamo_documento.tipo_documento"
-                                    clearable
+                                    readonly
                                 >
                                 </el-input>
                                 <span
@@ -381,11 +382,19 @@ export default {
             }
         },
         getDocumentosArchivoReservado() {
+            this.listDocumentos = [];
             axios
                 .get(main_url + "/admin/documentos/archivo_reservado")
                 .then((response) => {
                     this.listDocumentos = response.data.documentos;
-                    if (this.accion == "edit") {
+                    let existe = [];
+                    if (this.prestamo_documento) {
+                        existe = this.listDocumentos.filter(
+                            (elem) =>
+                                elem.id == this.prestamo_documento.documento_id
+                        );
+                    }
+                    if (this.accion == "edit" && existe.length == 0) {
                         setTimeout(() => {
                             this.listDocumentos.push(
                                 this.prestamo_documento.documento
@@ -398,6 +407,21 @@ export default {
             axios.get(main_url + "/admin/funcionarios").then((response) => {
                 this.listFuncionarios = response.data.funcionarios;
             });
+        },
+        getDocumento() {
+            this.prestamo_documento.tipo_documento = "";
+            if (this.prestamo_documento.documento_id != "") {
+                axios
+                    .get(
+                        main_url +
+                            "/admin/documentos/" +
+                            this.prestamo_documento.documento_id
+                    )
+                    .then((response) => {
+                        this.prestamo_documento.tipo_documento =
+                            response.data.documento.tipo;
+                    });
+            }
         },
         setRegistroModal() {
             this.enviando = true;

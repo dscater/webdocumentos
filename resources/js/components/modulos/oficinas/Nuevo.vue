@@ -68,6 +68,36 @@
                                     v-text="errors.descripcion[0]"
                                 ></span>
                             </div>
+                            <div class="form-group col-md-12">
+                                <label
+                                    :class="{
+                                        'text-danger': errors.dependencia_id,
+                                    }"
+                                    >Dependencia*</label
+                                >
+
+                                <el-select
+                                    placeholder="Dependencia"
+                                    class="w-100"
+                                    :class="{
+                                        'is-invalid': errors.dependencia_id,
+                                    }"
+                                    v-model="oficina.dependencia_id"
+                                    clearable
+                                >
+                                    <el-option
+                                        v-for="item in listDependencias"
+                                        :key="item.id"
+                                        :value="item.id"
+                                        :label="item.nombre"
+                                    ></el-option>
+                                </el-select>
+                                <span
+                                    class="error invalid-feedback"
+                                    v-if="errors.dependencia_id"
+                                    v-text="errors.dependencia_id[0]"
+                                ></span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -109,6 +139,7 @@ export default {
             default: {
                 nombre: "",
                 descripcion: "",
+                dependencia_id: "",
             },
         },
     },
@@ -155,13 +186,20 @@ export default {
                 { value: "BN", label: "Beni" },
             ],
             listTipos: ["ADMINISTRADOR", "OPERADOR"],
+            listDependencias: [],
             errors: [],
         };
     },
     mounted() {
         this.bModal = this.muestra_modal;
+        this.getDependencias();
     },
     methods: {
+        getDependencias() {
+            axios.get(main_url + "/admin/dependencias").then((response) => {
+                this.listDependencias = response.data.dependencias;
+            });
+        },
         setRegistroModal() {
             this.enviando = true;
             try {
@@ -180,6 +218,12 @@ export default {
                 formdata.append(
                     "descripcion",
                     this.oficina.descripcion ? this.oficina.descripcion : ""
+                );
+                formdata.append(
+                    "dependencia_id",
+                    this.oficina.dependencia_id
+                        ? this.oficina.dependencia_id
+                        : ""
                 );
 
                 if (this.accion == "edit") {
@@ -251,6 +295,7 @@ export default {
             this.errors = [];
             this.oficina.nombre = "";
             this.oficina.descripcion = "";
+            this.oficina.dependencia_id = "";
         },
     },
 };

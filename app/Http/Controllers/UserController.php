@@ -9,6 +9,7 @@ use App\Models\Estante;
 use App\Models\HistorialAccion;
 use App\Models\PrestamoDocumento;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,8 @@ use PDF;
 class UserController extends Controller
 {
     public $validacion = [
-        'nombre' => 'required|min:4',
-        'paterno' => 'required|min:4',
+        'nombre' => ["required", "min:4", 'regex:#^[\pL\s]+$#u'],
+        'paterno' => 'required|min:4|regex:#^[\pL\s]+$#u',
         'ci' => 'required|numeric|digits_between:4, 20|unique:users,ci',
         'ci_exp' => 'required',
         'dir' => 'required',
@@ -33,8 +34,13 @@ class UserController extends Controller
     public $mensajes = [
         'nombre.required' => 'Este campo es obligatorio',
         'nombre.min' => 'Debes ingresar al menos 4 carácteres',
+        'nombre.regex' => 'El campo nombre solo puede contener letras y espacios.',
         'paterno.required' => 'Este campo es obligatorio',
         'paterno.min' => 'Debes ingresar al menos 4 carácteres',
+        'paterno.regex' => 'El campo nombre solo puede contener letras y espacios.',
+        'materno.required' => 'Este campo es obligatorio',
+        'materno.min' => 'Debes ingresar al menos 4 carácteres',
+        'materno.regex' => 'El campo nombre solo puede contener letras y espacios.',
         'ci.required' => 'Este campo es obligatorio',
         'ci.numeric' => 'Debes ingresar un valor númerico',
         'ci.unique' => 'Este número de C.I. ya fue registrado',
@@ -158,7 +164,16 @@ class UserController extends Controller
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }
 
+        if ($request->materno && trim($request->materno) != '') {
+            $this->validacion['materno'] = 'regex:#^[\pL\s]+$#u';
+        }
+
         $request->validate($this->validacion, $this->mensajes);
+
+        if (!self::validaTelefonos($request->fono)) {
+            return response()->JSON(["errors" => ["fono" => "Debes ingresar solo valores númericos"]], 422);
+        }
+
 
         $cont = 0;
         do {
@@ -220,7 +235,17 @@ class UserController extends Controller
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:2048';
         }
 
+       
+        if ($request->materno && trim($request->materno) != '') {
+            $this->validacion['materno'] = 'regex:#^[\pL\s]+$#u';
+        }
+
         $request->validate($this->validacion, $this->mensajes);
+
+        if (!self::validaTelefonos($request->fono)) {
+            return response()->JSON(["errors" => ["fono" => "Debes ingresar solo valores númericos"]], 422);
+        }
+
         DB::beginTransaction();
         try {
             $datos_original = HistorialAccion::getDetalleRegistro($usuario, "users");
@@ -483,5 +508,15 @@ class UserController extends Controller
             "sw" => true,
             "message" => "Contraseña actualizada con éxito"
         ]);
+    }
+
+    // separar los telefonos por ;
+    public static function validaTelefonos($string)
+    {
+        $array = explode("; ", $string);
+        if (count($array) === count(array_filter($array, 'is_numeric'))) {
+            return true;
+        }
+        return false;
     }
 }

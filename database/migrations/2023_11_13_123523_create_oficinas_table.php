@@ -15,6 +15,7 @@ class CreateOficinasTable extends Migration
     {
         Schema::create('oficinas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("dependencia_id", 255);
             $table->string("nombre", 255);
             $table->text("descripcion")->nullable();
             $table->date("fecha_registro");

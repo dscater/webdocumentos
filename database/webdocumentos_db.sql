@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 16-11-2023 a las 13:50:15
+-- Tiempo de generación: 07-03-2024 a las 22:13:19
 -- Versión del servidor: 8.0.30
--- Versión de PHP: 8.1.10
+-- Versión de PHP: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -145,6 +145,7 @@ CREATE TABLE `documentos` (
   `estado` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
+  `tipo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -154,10 +155,11 @@ CREATE TABLE `documentos` (
 -- Volcado de datos para la tabla `documentos`
 --
 
-INSERT INTO `documentos` (`id`, `codigo`, `descripcion`, `dependencia_id`, `funcionario_id`, `oficina_id`, `estante_id`, `nivel`, `division`, `estado`, `fecha`, `hora`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'DOC-1', 'DESCRIPCIÓN DOCUMENTO #1', 1, 1, 1, 1, 1, 1, 'EN ARCHIVO', '2023-11-14', '12:44:00', '2023-11-14', '2023-11-14 16:44:38', '2023-11-16 13:48:13'),
-(2, 'DOC-2', 'DOCUMENTO #2', 2, 1, 2, 1, 1, 2, 'EN ARCHIVO', '2023-11-15', '11:34:00', '2023-11-15', '2023-11-15 15:35:11', '2023-11-16 13:46:37'),
-(3, 'DOC-3', 'DOCUMENTO #3', 2, 1, 2, 2, 1, 1, 'EN ARCHIVO', '2023-11-15', '12:06:00', '2023-11-15', '2023-11-15 16:06:52', '2023-11-15 19:29:33');
+INSERT INTO `documentos` (`id`, `codigo`, `descripcion`, `dependencia_id`, `funcionario_id`, `oficina_id`, `estante_id`, `nivel`, `division`, `estado`, `fecha`, `hora`, `tipo`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'DOC-1', 'DESCRIPCIÓN DOCUMENTO #1', 1, 1, 1, 1, 1, 1, 'EN ARCHIVO', '2023-11-14', '12:44:00', 'TIPO #1', '2023-11-14', '2023-11-14 16:44:38', '2024-03-07 21:55:45'),
+(2, 'DOC-2', 'DOCUMENTO #2', 2, 1, 2, 1, 1, 2, 'EN ARCHIVO', '2023-11-15', '11:34:00', 'TIPO #2', '2023-11-15', '2023-11-15 15:35:11', '2024-03-07 21:55:40'),
+(3, 'DOC-3', 'DOCUMENTO #3', 2, 1, 2, 2, 1, 1, 'EN ARCHIVO', '2023-11-15', '12:06:00', 'TIPO #3', '2023-11-15', '2023-11-15 16:06:52', '2024-03-07 21:55:56'),
+(4, 'DOC-4', 'DOCUMENTO #3', 2, 1, 2, 2, 1, 3, 'EN ARCHIVO', '2024-03-07', '17:55:00', 'TIPO #4', '2024-03-07', '2024-03-07 21:56:17', '2024-03-07 21:56:17');
 
 -- --------------------------------------------------------
 
@@ -245,7 +247,24 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (5, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRESTAMO DE DOCUMENTO', 'cantidad_documentos: 4<br/>created_at: 2023-11-16 09:45:47<br/>dependencia_id: 2<br/>descripcion: DESC. PRESTAMO #2<br/>documento_id: 2<br/>estado: <br/>fecha: 2023-11-16<br/>fecha_registro: 2023-11-16<br/>funcionario_id: 2<br/>hora: 09:45<br/>id: 2<br/>observacion: OBS. PRESTAMO #2<br/>tipo_documento: TIPO #2<br/>updated_at: 2023-11-16 09:45:47<br/>', NULL, 'PRESTAMO DE DOCUMENTOS', '2023-11-16', '09:45:47', '2023-11-16 13:45:47', '2023-11-16 13:45:47'),
 (6, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEVOLUCIÓN DE DOCUMENTO', 'cantidad_documentos: 4<br/>created_at: 2023-11-16 09:46:37<br/>descripcion: DESC. DEVOLUCION #2<br/>documento_id: 2<br/>fecha: 2023-11-16<br/>fecha_registro: 2023-11-16<br/>funcionario_id: 2<br/>hora: 09:46<br/>id: 2<br/>observacion: OBS. DEVOLUCION #2<br/>updated_at: 2023-11-16 09:46:37<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-16', '09:46:37', '2023-11-16 13:46:37', '2023-11-16 13:46:37'),
 (7, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN PRESTAMO DE DOCUMENTO', 'cantidad_documentos: 4<br/>created_at: 2023-11-16 09:47:27<br/>dependencia_id: 2<br/>descripcion: DESC. PRESTAMO #3. PRESTAMO DIRECTO<br/>documento_id: 1<br/>estado: <br/>fecha: 2023-11-16<br/>fecha_registro: 2023-11-16<br/>funcionario_id: 2<br/>hora: 09:46<br/>id: 3<br/>observacion: OBS. PRESTAMO #3. PRESTAMO DIRECTO<br/>tipo_documento: TIPO #2<br/>updated_at: 2023-11-16 09:47:27<br/>', NULL, 'PRESTAMO DE DOCUMENTOS', '2023-11-16', '09:47:27', '2023-11-16 13:47:27', '2023-11-16 13:47:27'),
-(8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEVOLUCIÓN DE DOCUMENTO', 'cantidad_documentos: 4<br/>created_at: 2023-11-16 09:48:13<br/>descripcion: DESC. DEVOLUCION PRESTAMO #3<br/>documento_id: 1<br/>fecha: 2023-11-16<br/>fecha_registro: 2023-11-16<br/>funcionario_id: 2<br/>hora: 09:47<br/>id: 3<br/>observacion: OBS. DEVOLUCION PRESTAMO #3<br/>updated_at: 2023-11-16 09:48:13<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-16', '09:48:13', '2023-11-16 13:48:13', '2023-11-16 13:48:13');
+(8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEVOLUCIÓN DE DOCUMENTO', 'cantidad_documentos: 4<br/>created_at: 2023-11-16 09:48:13<br/>descripcion: DESC. DEVOLUCION PRESTAMO #3<br/>documento_id: 1<br/>fecha: 2023-11-16<br/>fecha_registro: 2023-11-16<br/>funcionario_id: 2<br/>hora: 09:47<br/>id: 3<br/>observacion: OBS. DEVOLUCION PRESTAMO #3<br/>updated_at: 2023-11-16 09:48:13<br/>', NULL, 'DEVOLUCIÓN DE DOCUMENTOS', '2023-11-16', '09:48:13', '2023-11-16 13:48:13', '2023-11-16 13:48:13'),
+(9, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN ESTANTE', 'id: 3<br/>nombre: ESTANTE #3<br/>nivel: 4<br/>division: 4<br/>descripcion: DESC<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:16:24<br/>updated_at: 2024-03-07 17:16:24<br/>', NULL, 'ESTANTES', '2024-03-07', '17:16:24', '2024-03-07 21:16:24', '2024-03-07 21:16:24'),
+(10, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN ESTANTE', 'id: 3<br/>nombre: ESTANTE #3<br/>nivel: 4<br/>division: 4<br/>descripcion: DESC<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:16:24<br/>updated_at: 2024-03-07 17:16:24<br/>', NULL, 'ESTANTES', '2024-03-07', '17:16:30', '2024-03-07 21:16:30', '2024-03-07 21:16:30'),
+(11, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 77777<br/>tipo: OPERADOR<br/>foto: 1699455836_JPERES.jpg<br/>password: $2y$10$XMw2ht4HkDIxdtAaYi1WS.QiK6Zt//h9Mz6KCAafbGJLoj5/w8kGC<br/>acceso: 1<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 11:03:56<br/>updated_at: 2023-11-16 11:17:08<br/>', 'id: 2<br/>usuario: JPERES<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1234<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>correo: <br/>fono: 77777<br/>tipo: OPERADOR<br/>foto: 1699455836_JPERES.jpg<br/>password: $2y$10$XMw2ht4HkDIxdtAaYi1WS.QiK6Zt//h9Mz6KCAafbGJLoj5/w8kGC<br/>acceso: 1<br/>fecha_registro: 2023-11-08<br/>created_at: 2023-11-08 11:03:56<br/>updated_at: 2023-11-16 11:17:08<br/>', 'USUARIOS', '2024-03-07', '17:33:16', '2024-03-07 21:33:16', '2024-03-07 21:33:16'),
+(12, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA OFICINA', 'id: 2<br/>dependencia_id: 0<br/>nombre: OFICINA #2<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>created_at: 2023-11-13 15:30:02<br/>updated_at: 2023-11-13 15:30:02<br/>', 'id: 2<br/>dependencia_id: 2<br/>nombre: OFICINA #2<br/>descripcion: <br/>fecha_registro: 2023-11-13<br/>created_at: 2023-11-13 15:30:02<br/>updated_at: 2024-03-07 17:43:20<br/>', 'OFICINAS', '2024-03-07', '17:43:20', '2024-03-07 21:43:20', '2024-03-07 21:43:20'),
+(13, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA OFICINA', 'id: 1<br/>dependencia_id: 0<br/>nombre: OFICINA #1<br/>descripcion: DESC. OFICINA 1<br/>fecha_registro: 2023-11-13<br/>created_at: 2023-11-13 15:29:57<br/>updated_at: 2023-11-13 15:29:57<br/>', 'id: 1<br/>dependencia_id: 1<br/>nombre: OFICINA #1<br/>descripcion: DESC. OFICINA 1<br/>fecha_registro: 2023-11-13<br/>created_at: 2023-11-13 15:29:57<br/>updated_at: 2024-03-07 17:43:23<br/>', 'OFICINAS', '2024-03-07', '17:43:23', '2024-03-07 21:43:23', '2024-03-07 21:43:23'),
+(14, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA OFICINA', 'id: 3<br/>dependencia_id: 2<br/>nombre: OFICINA #3<br/>descripcion: DESC. OFI. 3<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:43:34<br/>updated_at: 2024-03-07 17:43:34<br/>', NULL, 'OFICINAS', '2024-03-07', '17:43:34', '2024-03-07 21:43:34', '2024-03-07 21:43:34'),
+(15, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA DEPENDENCIA', 'id: 3<br/>nombre: DEPENDENCIA 3<br/>descripcion: <br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:44:29<br/>updated_at: 2024-03-07 17:44:29<br/>', NULL, 'DEPENDENCIAS', '2024-03-07', '17:44:29', '2024-03-07 21:44:29', '2024-03-07 21:44:29'),
+(16, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA DEPENDENCIA', 'id: 3<br/>nombre: DEPENDENCIA 3<br/>descripcion: <br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:44:29<br/>updated_at: 2024-03-07 17:44:29<br/>', NULL, 'DEPENDENCIAS', '2024-03-07', '17:44:30', '2024-03-07 21:44:30', '2024-03-07 21:44:30'),
+(17, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 3<br/>codigo: DOC-3<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 12:06:00<br/>tipo: <br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 12:06:52<br/>updated_at: 2023-11-15 15:29:33<br/>', 'id: 3<br/>codigo: DOC-3<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 12:06:00<br/>tipo: TIPO #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 12:06:52<br/>updated_at: 2024-03-07 17:55:23<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:23', '2024-03-07 21:55:23', '2024-03-07 21:55:23'),
+(18, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 2<br/>codigo: DOC-2<br/>descripcion: DOCUMENTO #2<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 1<br/>nivel: 1<br/>division: 2<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 11:34:00<br/>tipo: <br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:11<br/>updated_at: 2023-11-16 09:46:37<br/>', 'id: 2<br/>codigo: DOC-2<br/>descripcion: DOCUMENTO #2<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 1<br/>nivel: 1<br/>division: 2<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 11:34:00<br/>tipo: TIPO #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:11<br/>updated_at: 2024-03-07 17:55:29<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:29', '2024-03-07 21:55:29', '2024-03-07 21:55:29'),
+(19, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCIÓN DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:44:00<br/>tipo: <br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:44:38<br/>updated_at: 2023-11-16 09:48:13<br/>', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCIÓN DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:44:00<br/>tipo: TIPO #2<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:44:38<br/>updated_at: 2024-03-07 17:55:33<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:33', '2024-03-07 21:55:33', '2024-03-07 21:55:33'),
+(20, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 2<br/>codigo: DOC-2<br/>descripcion: DOCUMENTO #2<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 1<br/>nivel: 1<br/>division: 2<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 11:34:00<br/>tipo: TIPO #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:11<br/>updated_at: 2024-03-07 17:55:29<br/>', 'id: 2<br/>codigo: DOC-2<br/>descripcion: DOCUMENTO #2<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 1<br/>nivel: 1<br/>division: 2<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 11:34:00<br/>tipo: TIPO #2<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 11:35:11<br/>updated_at: 2024-03-07 17:55:40<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:40', '2024-03-07 21:55:40', '2024-03-07 21:55:40'),
+(21, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCIÓN DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:44:00<br/>tipo: TIPO #2<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:44:38<br/>updated_at: 2024-03-07 17:55:33<br/>', 'id: 1<br/>codigo: DOC-1<br/>descripcion: DESCRIPCIÓN DOCUMENTO #1<br/>dependencia_id: 1<br/>funcionario_id: 1<br/>oficina_id: 1<br/>estante_id: 1<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-14<br/>hora: 12:44:00<br/>tipo: TIPO #1<br/>fecha_registro: 2023-11-14<br/>created_at: 2023-11-14 12:44:38<br/>updated_at: 2024-03-07 17:55:45<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:45', '2024-03-07 21:55:45', '2024-03-07 21:55:45'),
+(22, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 3<br/>codigo: DOC-3<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 12:06:00<br/>tipo: TIPO #1<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 12:06:52<br/>updated_at: 2024-03-07 17:55:23<br/>', 'id: 3<br/>codigo: DOC-3<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 1<br/>estado: EN ARCHIVO<br/>fecha: 2023-11-15<br/>hora: 12:06:00<br/>tipo: TIPO #3<br/>fecha_registro: 2023-11-15<br/>created_at: 2023-11-15 12:06:52<br/>updated_at: 2024-03-07 17:55:56<br/>', 'DOCUMENTOS', '2024-03-07', '17:55:56', '2024-03-07 21:55:56', '2024-03-07 21:55:56'),
+(23, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN DOCUMENTO', 'id: 4<br/>codigo: DOC-4<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2024-03-07<br/>hora: 17:55<br/>tipo: TIPO #4<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:56:17<br/>updated_at: 2024-03-07 17:56:17<br/>', NULL, 'DOCUMENTOS', '2024-03-07', '17:56:17', '2024-03-07 21:56:17', '2024-03-07 21:56:17'),
+(24, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN DOCUMENTO', 'id: 4<br/>codigo: DOC-4<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2024-03-07<br/>hora: 17:55:00<br/>tipo: TIPO #4<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:56:17<br/>updated_at: 2024-03-07 17:56:17<br/>', 'id: 4<br/>codigo: DOC-4<br/>descripcion: DOCUMENTO #3<br/>dependencia_id: 2<br/>funcionario_id: 1<br/>oficina_id: 2<br/>estante_id: 2<br/>nivel: 1<br/>division: 3<br/>estado: EN ARCHIVO<br/>fecha: 2024-03-07<br/>hora: 17:55:00<br/>tipo: TIPO #4<br/>fecha_registro: 2024-03-07<br/>created_at: 2024-03-07 17:56:17<br/>updated_at: 2024-03-07 17:56:17<br/>', 'DOCUMENTOS', '2024-03-07', '17:56:21', '2024-03-07 21:56:21', '2024-03-07 21:56:21'),
+(25, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN PRESTAMO DE DOCUMENTO', 'id: 3<br/>documento_id: 1<br/>funcionario_id: 2<br/>tipo_documento: TIPO #2<br/>cantidad_documentos: 4<br/>fecha: 2023-11-16<br/>hora: 09:46:00<br/>dependencia_id: 2<br/>descripcion: DESC. PRESTAMO #3. PRESTAMO DIRECTO<br/>observacion: OBS. PRESTAMO #3. PRESTAMO DIRECTO<br/>fecha_registro: 2023-11-16<br/>estado: 0<br/>created_at: 2023-11-16 09:47:27<br/>updated_at: 2023-11-16 09:48:13<br/>', 'id: 3<br/>documento_id: 1<br/>funcionario_id: 2<br/>tipo_documento: TIPO #1<br/>cantidad_documentos: 4<br/>fecha: 2023-11-16<br/>hora: 09:46:00<br/>dependencia_id: 2<br/>descripcion: DESC. PRESTAMO #3. PRESTAMO DIRECTO<br/>observacion: OBS. PRESTAMO #3. PRESTAMO DIRECTO<br/>fecha_registro: 2023-11-16<br/>estado: 0<br/>created_at: 2023-11-16 09:47:27<br/>updated_at: 2024-03-07 18:11:26<br/>', 'PRESTAMO DE DOCUMENTOS', '2024-03-07', '18:11:26', '2024-03-07 22:11:26', '2024-03-07 22:11:26');
 
 -- --------------------------------------------------------
 
@@ -286,6 +305,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `oficinas` (
   `id` bigint UNSIGNED NOT NULL,
+  `dependencia_id` bigint UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci,
   `fecha_registro` date NOT NULL,
@@ -297,9 +317,10 @@ CREATE TABLE `oficinas` (
 -- Volcado de datos para la tabla `oficinas`
 --
 
-INSERT INTO `oficinas` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'OFICINA #1', 'DESC. OFICINA 1', '2023-11-13', '2023-11-13 19:29:57', '2023-11-13 19:29:57'),
-(2, 'OFICINA #2', '', '2023-11-13', '2023-11-13 19:30:02', '2023-11-13 19:30:02');
+INSERT INTO `oficinas` (`id`, `dependencia_id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 1, 'OFICINA #1', 'DESC. OFICINA 1', '2023-11-13', '2023-11-13 19:29:57', '2024-03-07 21:43:23'),
+(2, 2, 'OFICINA #2', '', '2023-11-13', '2023-11-13 19:30:02', '2024-03-07 21:43:20'),
+(3, 2, 'OFICINA #3', 'DESC. OFI. 3', '2024-03-07', '2024-03-07 21:43:34', '2024-03-07 21:43:34');
 
 -- --------------------------------------------------------
 
@@ -349,7 +370,7 @@ CREATE TABLE `prestamo_documentos` (
 INSERT INTO `prestamo_documentos` (`id`, `documento_id`, `funcionario_id`, `tipo_documento`, `cantidad_documentos`, `fecha`, `hora`, `dependencia_id`, `descripcion`, `observacion`, `fecha_registro`, `estado`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'TIPO #1', 3, '2023-11-16', '09:19:00', 2, 'DESC. PRESTAMO #1', 'OBS. PRESTAMO #1', '2023-11-16', 0, '2023-11-16 13:22:54', '2023-11-16 13:43:49'),
 (2, 2, 2, 'TIPO #2', 4, '2023-11-16', '09:45:00', 2, 'DESC. PRESTAMO #2', 'OBS. PRESTAMO #2', '2023-11-16', 0, '2023-11-16 13:45:47', '2023-11-16 13:46:37'),
-(3, 1, 2, 'TIPO #2', 4, '2023-11-16', '09:46:00', 2, 'DESC. PRESTAMO #3. PRESTAMO DIRECTO', 'OBS. PRESTAMO #3. PRESTAMO DIRECTO', '2023-11-16', 0, '2023-11-16 13:47:27', '2023-11-16 13:48:13');
+(3, 1, 2, 'TIPO #1', 4, '2023-11-16', '09:46:00', 2, 'DESC. PRESTAMO #3. PRESTAMO DIRECTO', 'OBS. PRESTAMO #3. PRESTAMO DIRECTO', '2023-11-16', 0, '2023-11-16 13:47:27', '2024-03-07 22:11:26');
 
 -- --------------------------------------------------------
 
@@ -411,7 +432,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `correo`, `fono`, `tipo`, `foto`, `password`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', 'admin', NULL, '0', '', '', NULL, '', 'ADMINISTRADOR', NULL, '$2y$10$RrCZZySOwPej2gMFWsrjMe6dLzfaL5Q88h4J75I1FesEBRNPwq1x.', 1, '2023-11-01', NULL, NULL),
-(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '77777', 'OPERADOR', '1699455836_JPERES.jpg', '$2y$10$xIRVAm.8iVqsiJRl/eWMcO6hWHi.BA6rZAZCciYVvu9vDyy3yx6Ry', 1, '2023-11-08', '2023-11-08 15:03:56', '2023-11-15 19:36:20'),
+(2, 'JPERES', 'JUAN', 'PERES', 'MAMANI', '1234', 'LP', 'LOS OLIVOS', NULL, '77777', 'OPERADOR', '1699455836_JPERES.jpg', '$2y$10$XMw2ht4HkDIxdtAaYi1WS.QiK6Zt//h9Mz6KCAafbGJLoj5/w8kGC', 1, '2023-11-08', '2023-11-08 15:03:56', '2023-11-16 15:17:08'),
 (3, 'FGONZALES', 'FERNANDO', 'GONZALES', 'MARTINES', '1111', 'LP', NULL, NULL, '777777', 'FUNCIONARIO', NULL, '$2y$10$cSrzU1ME21B10bI3wFPuQuWwX59KiP/0v5mzgIvAWgS0dO8vp08HO', 1, '2023-11-13', '2023-11-13 19:16:54', '2023-11-13 19:17:59'),
 (4, 'FMAMANI', 'FELIPE', 'MAMANI', 'MAMANI', '2222', 'PT', NULL, NULL, '666666', 'FUNCIONARIO', NULL, '$2y$10$Mm6dl26X398VZwZ/SkZMRO.ditNPU.Vjk24v07Bof/W6WqTwGA51S', 1, '2023-11-15', '2023-11-15 16:11:32', '2023-11-15 16:11:32');
 
@@ -536,7 +557,7 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `dependencias`
 --
 ALTER TABLE `dependencias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `devolucion_documentos`
@@ -548,13 +569,13 @@ ALTER TABLE `devolucion_documentos`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estantes`
 --
 ALTER TABLE `estantes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `funcionarios`
@@ -566,7 +587,7 @@ ALTER TABLE `funcionarios`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -578,7 +599,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `oficinas`
 --
 ALTER TABLE `oficinas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`

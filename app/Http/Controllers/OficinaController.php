@@ -12,16 +12,24 @@ class OficinaController extends Controller
 {
     public $validacion = [
         'nombre' => 'required|min:2',
+        'dependencia_id' => 'required',
     ];
 
     public $mensajes = [
         'nombre.required' => 'Este campo es obligatorio',
         'nombre.min' => 'Debes ingresar al menos 4 carácteres',
+        'dependencia_id.required' => 'Este campo es obligatorio',
     ];
 
     public function index(Request $request)
     {
-        $oficinas = Oficina::orderBy("id", "desc")->get();
+        $oficinas = Oficina::with("dependencia")->orderBy("id", "desc")->get();
+        return response()->JSON(['oficinas' => $oficinas, 'total' => count($oficinas)], 200);
+    }
+
+    public function getByDependencia(Request $request)
+    {
+        $oficinas = Oficina::with("dependencia")->where("dependencia_id", $request->id)->orderBy("id", "desc")->get();
         return response()->JSON(['oficinas' => $oficinas, 'total' => count($oficinas)], 200);
     }
 

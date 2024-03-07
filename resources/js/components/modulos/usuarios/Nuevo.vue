@@ -141,6 +141,7 @@
                                     >Teléfono/Celular*</label
                                 >
                                 <b-form-tags
+                                    inputType="number"
                                     input-id="tags-basic"
                                     placeholder="Teléfono/Celular"
                                     :class="{ 'is-invalid': errors.fono }"

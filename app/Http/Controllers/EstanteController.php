@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documento;
 use App\Models\Estante;
 use App\Models\HistorialAccion;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -133,6 +135,10 @@ class EstanteController extends Controller
     {
         DB::beginTransaction();
         try {
+            $usado = Documento::where("estante_id", $estante->id)->get();
+            if (count($usado) > 0) {
+                throw new Exception("No es posible eliminar el registro porque esa siendo utilizado");
+            }
             $datos_original = HistorialAccion::getDetalleRegistro($estante, "estantes");
             $estante->delete();
             HistorialAccion::create([

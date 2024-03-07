@@ -208,6 +208,11 @@ export default {
                 { key: "nombre", label: "Nombre Oficina", sortable: true },
                 { key: "descripcion", label: "Descripción", sortable: true },
                 {
+                    key: "dependencia.nombre",
+                    label: "Dependencia",
+                    sortable: true,
+                },
+                {
                     key: "fecha_registro_t",
                     label: "Fecha de registro",
                     sortable: true,
@@ -225,6 +230,7 @@ export default {
                 id: 0,
                 nombre: "",
                 descripcion: "",
+                dependencia_id: "",
             },
             currentPage: 1,
             perPage: 5,
@@ -251,6 +257,9 @@ export default {
             this.oOficina.nombre = item.nombre ? item.nombre : "";
             this.oOficina.descripcion = item.descripcion
                 ? item.descripcion
+                : "";
+            this.oOficina.dependencia_id = item.dependencia_id
+                ? item.dependencia_id
                 : "";
             this.modal_accion = "edit";
             this.muestra_modal = true;
@@ -341,6 +350,7 @@ export default {
         limpiaOficina() {
             this.oOficina.nombre = "";
             this.oOficina.descripcion = "";
+            this.oOficina.dependencia_id = "";
         },
         formatoFecha(date) {
             return this.$moment(String(date)).format("DD/MM/YYYY");

@@ -21,6 +21,7 @@ class Documento extends Model
         "estado",
         "fecha",
         "hora",
+        "tipo",
         "fecha_registro",
     ];
 

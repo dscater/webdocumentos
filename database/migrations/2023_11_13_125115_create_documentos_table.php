@@ -26,6 +26,7 @@ class CreateDocumentosTable extends Migration
             $table->string("estado");
             $table->date("fecha");
             $table->time("hora");
+            $table->string("tipo", 255)->nullable();
             $table->date("fecha_registro");
             $table->timestamps();
         });

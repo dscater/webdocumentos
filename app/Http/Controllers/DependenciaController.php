@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dependencia;
 use App\Models\HistorialAccion;
+use App\Models\Oficina;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -112,6 +114,11 @@ class DependenciaController extends Controller
     {
         DB::beginTransaction();
         try {
+            $usado = Oficina::where("dependencia_id", $dependencia->id)->get();
+            if (count($usado) > 0) {
+                throw new Exception("No es posible eliminar el registro porque esta siendo utilizado");
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($dependencia, "dependencias");
             $dependencia->delete();
             HistorialAccion::create([

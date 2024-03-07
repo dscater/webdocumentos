@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
         // Oficinas
+        Route::get("oficinas/getByDependencia", [OficinaController::class, 'getByDependencia']);
         Route::resource('oficinas', OficinaController::class)->only([
             'index', 'store', 'update', 'destroy', 'show'
         ]);

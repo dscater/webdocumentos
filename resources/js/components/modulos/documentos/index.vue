@@ -279,6 +279,7 @@ export default {
                 { key: "division", label: "División", sortable: true },
                 { key: "estado", label: "Estado", sortable: true },
                 { key: "fecha_hora_t", label: "Fecha y Hora", sortable: true },
+                { key: "tipo", label: "Tipo de documento", sortable: true },
                 {
                     key: "documentos",
                     label: "Documentos Adjuntados",
@@ -312,6 +313,7 @@ export default {
                 estado: "",
                 fecha: "",
                 hora: "",
+                tipo: "",
             },
             currentPage: 1,
             perPage: 5,
@@ -354,6 +356,7 @@ export default {
             this.oDocumento.estado = item.estado ? item.estado : "";
             this.oDocumento.fecha = item.fecha ? item.fecha : "";
             this.oDocumento.hora = item.hora ? item.hora : "";
+            this.oDocumento.tipo = item.tipo ? item.tipo : "";
             this.modal_accion = "edit";
             this.muestra_modal = true;
         },
@@ -377,6 +380,7 @@ export default {
             this.oDocumento.estado = item.estado ? item.estado : "";
             this.oDocumento.fecha = item.fecha ? item.fecha : "";
             this.oDocumento.hora = item.hora ? item.hora : "";
+            this.oDocumento.tipo = item.tipo ? item.tipo : "";
             this.oDocumento.adjuntar_documentos = item.adjuntar_documentos
                 ? item.adjuntar_documentos
                 : "";
@@ -478,6 +482,7 @@ export default {
             this.oDocumento.estado = "";
             this.oDocumento.fecha = "";
             this.oDocumento.hora = "";
+            this.oDocumento.tipo = "";
         },
         formatoFecha(date) {
             return this.$moment(String(date)).format("DD/MM/YYYY");

@@ -10,6 +10,7 @@ class Oficina extends Model
     use HasFactory;
 
     protected $fillable = [
+        "dependencia_id",
         "nombre",
         "descripcion",
         "fecha_registro",
@@ -21,5 +22,10 @@ class Oficina extends Model
     public function getFechaRegistroTAttribute()
     {
         return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
+    public function dependencia()
+    {
+        return $this->belongsTo(Dependencia::class, 'dependencia_id');
     }
 }

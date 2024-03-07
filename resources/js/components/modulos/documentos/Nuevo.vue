@@ -52,10 +52,10 @@
                                     :class="{
                                         'text-danger': errors.dependencia_id,
                                     }"
-                                    >Último Movimiento Dependencia*</label
+                                    >Dependencia*</label
                                 >
                                 <el-select
-                                    placeholder="Último Movimiento Dependencia"
+                                    placeholder="Dependencia"
                                     class="d-block"
                                     :class="{
                                         'is-invalid': errors.dependencia_id,
@@ -63,6 +63,7 @@
                                     v-model="documento.dependencia_id"
                                     filterable
                                     clearable
+                                    @change="getOficinas"
                                 >
                                     <el-option
                                         v-for="item in listDependencias"
@@ -82,10 +83,10 @@
                                     :class="{
                                         'text-danger': errors.funcionario_id,
                                     }"
-                                    >Último Movimiento Funcionario*</label
+                                    >Funcionario*</label
                                 >
                                 <el-select
-                                    placeholder="Último Movimiento Funcionario"
+                                    placeholder="Funcionario"
                                     class="d-block"
                                     :class="{
                                         'is-invalid': errors.funcionario_id,
@@ -274,6 +275,27 @@
                                     v-text="errors.hora[0]"
                                 ></span>
                             </div>
+                            <div class="form-group col-md-6">
+                                <label
+                                    :class="{
+                                        'text-danger': errors.tipo,
+                                    }"
+                                    >Tipo de documento*</label
+                                >
+                                <el-input
+                                    placeholder="Tipo de documento"
+                                    :class="{
+                                        'is-invalid': errors.tipo,
+                                    }"
+                                    v-model="documento.tipo"
+                                    clearable
+                                ></el-input>
+                                <span
+                                    class="error invalid-feedback"
+                                    v-if="errors.tipo"
+                                    v-text="errors.tipo[0]"
+                                ></span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -325,6 +347,7 @@ export default {
                 estado: "",
                 fecha: "",
                 hora: "",
+                tipo: "",
             },
         },
     },
@@ -339,6 +362,8 @@ export default {
                         this.getLastDependencia();
                         this.getLastFuncionario();
                     }, 300);
+                } else {
+                    this.getOficinas();
                 }
                 setTimeout(() => {
                     this.getNivelDivisionEstante();
@@ -383,7 +408,6 @@ export default {
         this.bModal = this.muestra_modal;
         this.getDependencias();
         this.getFuncionarios();
-        this.getOficinas();
         this.getEstantes();
     },
     methods: {
@@ -398,9 +422,18 @@ export default {
             });
         },
         getOficinas() {
-            axios.get(main_url + "/admin/oficinas").then((response) => {
-                this.listOficinas = response.data.oficinas;
-            });
+            this.listOficinas = [];
+            if (this.documento.dependencia_id != "") {
+                axios
+                    .get(main_url + "/admin/oficinas/getByDependencia", {
+                        params: {
+                            id: this.documento.dependencia_id,
+                        },
+                    })
+                    .then((response) => {
+                        this.listOficinas = response.data.oficinas;
+                    });
+            }
         },
         getEstantes() {
             axios.get(main_url + "/admin/estantes").then((response) => {
@@ -513,6 +546,10 @@ export default {
                     "hora",
                     this.documento.hora ? this.documento.hora : ""
                 );
+                formdata.append(
+                    "tipo",
+                    this.documento.tipo ? this.documento.tipo : ""
+                );
 
                 if (this.accion == "edit") {
                     url = main_url + "/admin/documentos/" + this.documento.id;
@@ -592,6 +629,7 @@ export default {
             this.documento.estado = "";
             this.documento.fecha = "";
             this.documento.hora = "";
+            this.documento.tipo = "";
         },
     },
 };

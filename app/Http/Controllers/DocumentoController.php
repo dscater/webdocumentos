@@ -21,6 +21,7 @@ class DocumentoController extends Controller
         'division' => 'required',
         'fecha' => 'required',
         'hora' => 'required',
+        'tipo' => 'required',
     ];
 
     public $mensajes = [
@@ -34,6 +35,7 @@ class DocumentoController extends Controller
         'division.required' => 'Este campo es obligatorio',
         'fecha.required' => 'Este campo es obligatorio',
         'hora.required' => 'Este campo es obligatorio',
+        'tipo.required' => 'Este campo es obligatorio',
     ];
 
     public function index(Request $request)
